@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		
+
+	 <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
+        <link href="css/form.css" rel="stylesheet">
+
+        <link href="css/style.css" rel="stylesheet">
+
+        <link href="css/animate.css" rel="stylesheet">
+
+        <link href="css/generics.css" rel="stylesheet"> 
+		<link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        <title>Go Virtual</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+		<script language="JavaScript">
+
+</script>
+	<style>
+			#cat{
+				
+				    background: #033739;
+					color: white;
+					margin-left: 28px;
+					margin-top: 20px;
+					text-align: center;
+					width: 100px;
+			}
+			#image1{
+				width:100px;
+				height:60px;
+				margin-left: -15px;
+				margin-bottom: 10px;
+			}
+			#heading{
+				font-size:12px;
+			}
+			#gitem
+			{  margin-top: 20px;
+			margin-bottom:5px
+			
+			}
+			#img
+			{  height: 150px;
+					width: 100%;
+			
+			}
+			#center
+			{
+			background: #033739;
+			padding: 5px;
+			}
+			#col
+			{
+			color:#fff;
+			
+			}
+			#mar
+			{  margin-top:15px;
+				margin-bottom:15px;
+			}
+			#btn
+			{
+			background: #333;
+			width: 100%;
+			border-color: black;
+			}
+		</style>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w&libraries=geometry"></script>
+        <script>
+		
+		
+		 function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+		
+		
+		</script>
+	<script>
+
+	function loadhide(){
+
+	$("#loader").hide();
+	
+	$("#loadertxt").hide();
+
+	}
+	function loadshow(){
+
+	$("#loader").show();
+	$("#loadertxt").show();
+	}
+	
+	
+function getflightname(carrier_name1)
+{
+
+
+ $.ajax({
+                type: "GET",
+                url: "https://iatacodes.org/api/v6/airlines.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&code="+carrier_name1+"",
+                <!-- cache: false, -->
+                crossDomain: true,
+                dataType: "jsonp",
+                success: function (response) {
+                   
+				   str = response;
+				   
+				   
+				   
+					console.log(response.response[0].name);
+				  carrierName = response.response[0].name;
+										}
+									});
+}
+
+
+
+function bookflight(book_flight_details)
+{   
+
+ <!-- navigator.notification.alert('Error code: ' , null ,"asdas"); -->
+<!-- alert(book_flight_details); -->
+	 $.ajax({
+                    type: "POST",
+                    url: "http://govirtualstore.com/app/iOS/flightbooking.php",
+                    data: book_flight_details,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: "json",
+                    complete: function (data) {
+						console.log(data);
+						var str= data;	
+					
+			
+			   alert("Flight Booking Request has been sent" );
+			   window.location="categories.html?user="+user_id+"&email="+email+"&fbpic="+fbpic+"";
+			
+                    }
+					
+                });
+
+}
+
+
+	function callflightresult()
+{   
+		
+<!-- $("#loadertxt").hide(); -->
+<!-- $("#loader").hide(); -->
+
+
+ stop = getParameterByName('stop');
+ 
+ trip_id = getParameterByName('trip_id');
+ price = getParameterByName('price');
+ total_duration = getParameterByName('total_duration');
+if(stop == 0)
+{
+
+
+ duration_time = getParameterByName('duration_time');
+ origin = getParameterByName('origin');
+ destination = getParameterByName('destination');
+
+ arrivalTime_Date = getParameterByName('arrivalTime_Date');
+ arrival_time = getParameterByName('arrival_time');
+ arrival_date = arrivalTime_Date.substr( 0 , arrivalTime_Date.indexOf("T")  );
+ 
+ departureTime_Date = getParameterByName('departureTime_Date');
+ departure_time = getParameterByName('departure_time');
+ departure_date = departureTime_Date.substr( 0 , departureTime_Date.indexOf("T")  );	
+ 
+ carrier_name = getParameterByName('carrier_name');
+ carrier_no = getParameterByName('carrier_no');
+
+ cabin = getParameterByName('cabin');
+	
+  meal= getParameterByName('meal');	
+ $.ajax({
+                type: "GET",
+                url: "https://iatacodes.org/api/v6/airlines.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&code="+carrier_name+"",
+                <!-- cache: false, -->
+                crossDomain: true,
+                dataType: "jsonp",
+                success: function (response) {
+                   
+				   str = response;
+				    carrierName = response.response[0].name;
+  flightdetails = "email=" +email+ "&trip_id=" +trip_id+ "&origin="+origin+"&destination="+destination+"&arrival_time="+arrival_time+"&arrival_date="+arrival_date+"&departure_time="+departure_time+"&departure_date="+departure_date+"&carrier_name="+carrier_name+"&carrier_no="+carrier_no+"&duration_time="+duration_time+"&cabin="+cabin+"&price="+ price+ "&stop= "+0+"&total_duration=" + total_duration +"&meal=" + meal;
+  
+  
+  
+ showflight ="<div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><br><br><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin+"</p><p>"+departure_date+"</p><p>"+meal+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrierName+" "+carrier_name+"  "+carrier_no+"<hr></p><p id='flightstops'>"+duration_time+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination+"</p><p>"+arrival_date+"</p><p>"+cabin+"</p></div></center></div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><a onclick='bookflight(\""+flightdetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 100%;  border-color: black; text-shadow: none; color: white;' >Book Flight</button></a> ";
+ 
+ $("#wrapper").append(showflight);
+
+ 	
+				 
+										}
+									});
+ 
+ }
+
+
+else if(stop ==1){
+
+ origin1 = getParameterByName('origin1');
+ destination1 = getParameterByName('destination1');
+
+ arrivalTime_Date1 = getParameterByName('arrivalTime_Date1');
+ arrival_time1 = getParameterByName('arrival_time1');
+ arrival_date1 = arrivalTime_Date1.substr( 0 , arrivalTime_Date1.indexOf("T")  );
+
+ departureTime_Date1 = getParameterByName('departureTime_Date1');
+ departure_time1 = getParameterByName('departure_time1');
+ departure_date1 = departureTime_Date1.substr( 0 , departureTime_Date1.indexOf("T")  );	
+ 
+ carrier_name1 = getParameterByName('carrier_name1');
+ carrier_no1 = getParameterByName('carrier_no1');
+ cabin1 = getParameterByName('cabin1');
+
+ origin2 = getParameterByName('origin2');
+ destination2 = getParameterByName('destination2');
+
+ arrivalTime_Date2 = getParameterByName('arrivalTime_Date2');
+ arrival_time2 = getParameterByName('arrival_time2');
+ arrival_date2 = arrivalTime_Date2.substr( 0 , arrivalTime_Date2.indexOf("T")  );
+
+ departureTime_Date2 = getParameterByName('departureTime_Date2');
+ departure_time2 = getParameterByName('departure_time2');
+ departure_date2 = departureTime_Date2.substr( 0 , departureTime_Date2.indexOf("T")  );	
+ 
+ carrier_name2 = getParameterByName('carrier_name2');
+ carrier_no2 = getParameterByName('carrier_no2');
+ cabin2 = getParameterByName('cabin2');
+ 
+ duration_time1 = getParameterByName('duration_time1');
+ duration_time2 = getParameterByName('duration_time2');
+ 
+ meal1  = getParameterByName('meal1');
+ meal2  = getParameterByName('meal2');
+ waiting_time  = getParameterByName('waiting_time');
+ $.ajax({
+                type: "GET",
+                url: "https://iatacodes.org/api/v6/airlines.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&code="+carrier_name1+"",
+                <!-- cache: false, -->
+                crossDomain: true,
+                dataType: "jsonp",
+                success: function (response) {
+                   
+				   str = response;
+				    carrierName = response.response[0].name;
+ 
+ flightdetails = "email="+email+"&trip_id="+trip_id+"&origin1="+origin1+"&destination1="+destination1+"&arrivalTime_Date1="+arrivalTime_Date1+"&arrival_time1="+arrival_time1+"&departureTime_Date1="+departureTime_Date1+"&departure_time1="+departure_time1+"&carrier_name1="+carrier_name1+"&carrier_no1="+carrier_no1+"&duration_time1="+duration_time1+"&cabin1="+cabin1+"&price="+price+"&stop="+1+"&total_duration="+total_duration+"&origin2="+origin2+"&destination2="+destination2+"&arrivalTime_Date2="+arrivalTime_Date2+"&arrival_time2="+arrival_time2+"&departureTime_Date2="+departureTime_Date2+"&deperture_time2="+departure_time2+"&carrier_name2="+carrier_name2+"&carrier_no2="+carrier_no2+"&duration_time2="+duration_time2+"&cabin2="+cabin2+"&waiting_time="+waiting_time +"&meal1="+meal1 +"&meal2=" + meal2 ;
+ 
+ showflight = "<div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin1+"</p><p>"+departure_date1+"</p><p>"+meal1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrierName+" "+carrier_name1+"  "+carrier_no1+"<hr></p><p id='flightstops'>"+duration_time1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time1+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination1+"</p><p>"+arrival_date1+"</p><p>"+cabin1+"</p></div></center></div><br><br><br><br><br>";
+ 
+ showflight1 = "<center><p style='color: white;'>Waiting Time "+waiting_time+"</p></center><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin2+"</p><p>"+departure_date2+"</p><p>"+meal2+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'><br></p><p><hr>"+carrierName+" "+carrier_name2+"  "+carrier_no2+"<hr></p><p id='flightstops'>"+duration_time2+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time2+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination2+"</p><p>"+arrival_date2+"</p><p>"+cabin2+"</p></div></center></div><br><br><br><br><br><br><br><br><br><br><br><br><br><a onclick='bookflight(\""+flightdetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 100%;  border-color: black; text-shadow: none; color: white;' >Book Flight</button></a> ";
+ 
+ $("#wrapper").append(showflight);
+ $("#wrapper1").append(showflight1);
+									}
+									});
+}
+
+else if(stop ==2){
+
+ origin1 = getParameterByName('origin1');
+ destination1 = getParameterByName('destination1');
+
+ arrivalTime_Date1 = getParameterByName('arrivalTime_Date1');
+ arrival_time1 = getParameterByName('arrival_time1');
+arrival_date1 = arrivalTime_Date1.substr( 0 , arrivalTime_Date1.indexOf("T")  );
+
+ departureTime_Date1 = getParameterByName('departureTime_Date1');
+ departure_time1 = getParameterByName('departure_time1');
+ departure_date1 = departureTime_Date1.substr( 0 , departureTime_Date1.indexOf("T")  );	
+ carrier_name1 = getParameterByName('carrier_name1');
+ carrier_no1 = getParameterByName('carrier_no1');
+ cabin1 = getParameterByName('cabin1');
+
+ origin2 = getParameterByName('origin2');
+ destination2 = getParameterByName('destination2');
+
+ arrivalTime_Date2 = getParameterByName('arrivalTime_Date2');
+ arrival_time2 = getParameterByName('arrival_time2');
+arrival_date2 = arrivalTime_Date2.substr( 0 , arrivalTime_Date2.indexOf("T")  );
+
+ departureTime_Date2 = getParameterByName('departureTime_Date2');
+ departure_time2 = getParameterByName('departure_time2');
+ departure_date2 = departureTime_Date2.substr( 0 , departureTime_Date2.indexOf("T")  );	
+ 
+ carrier_name2 = getParameterByName('carrier_name2');
+ carrier_no2 = getParameterByName('carrier_no2');
+ cabin2 = getParameterByName('cabin2');
+
+ origin3 = getParameterByName('origin3');
+ destination3 = getParameterByName('destination3');
+
+ arrivalTime_Date3 = getParameterByName('arrivalTime_Date3');
+ arrival_time3 = getParameterByName('arrival_time3');
+arrival_date3 = arrivalTime_Date3.substr( 0 , arrivalTime_Date3.indexOf("T")  );	
+ 
+ departureTime_Date3 = getParameterByName('departureTime_Date3');
+ departure_time3 = getParameterByName('departure_time3');
+ departure_date3 = departureTime_Date3.substr( 0 , departureTime_Date3.indexOf("T")  );	
+
+ carrier_name3 = getParameterByName('carrier_name3');
+ carrier_no3 = getParameterByName('carrier_no3');
+ cabin3 = getParameterByName('cabin3');
+ duration_time1 = getParameterByName('duration_time1');
+ duration_time2 = getParameterByName('duration_time2');
+ duration_time3 = getParameterByName('duration_time3');
+ waiting_time = getParameterByName('waiting_time');
+ meal1  = getParameterByName('meal1');
+ meal2  = getParameterByName('meal2');
+ meal3  = getParameterByName('meal3');
+ 
+ flightdetails = "email="+email+"&trip_id="+trip_id+"&origin1="+origin1+"&destination1="+destination1+"&arrivalTime_Date1="+arrivalTime_Date1+"&arrival_time1="+arrival_time1+"&departureTime_Date1="+departureTime_Date1+"&departure_time1="+departure_time1+"&carrier_name1="+carrier_name1+"&carrier_no1="+carrier_no1+"&duration_time1="+duration_time1+"&cabin1="+cabin1+"&price="+price+"&stop=2&total_duration="+total_duration+"&origin2="+origin2+"&destination2="+destination2+"&arrivalTime_Date2="+arrivalTime_Date2+"&arrival_time2="+arrival_time2+"&departureTime_Date2="+departureTime_Date2+"&deperture_time2="+departure_time2+"&carrier_name2="+carrier_name2+"&carrier_no2="+carrier_no2+"&duration_time2="+duration_time2+"&cabin1="+cabin2+"&waiting_time="+waiting_time+"&origin3="+origin3+"&destination3="+destination3+"&arrivalTime_Date3="+arrivalTime_Date3+"&arrival_time3="+arrival_time3+"&departureTime_Date3="+departureTime_Date3+"&deperture_time3="+departure_time3+"&carrier_name3="+carrier_name3+"&carrier_no3="+carrier_no3+"&duration_time3="+duration_time3+"&cabin3="+cabin3+"&meal1="+meal1 +"&meal2="+meal2 +"&meal3=" + meal3;
+ $.ajax({
+                type: "GET",
+                url: "https://iatacodes.org/api/v6/airlines.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&code="+carrier_name1+"",
+                <!-- cache: false, -->
+                crossDomain: true,
+                dataType: "jsonp",
+                success: function (response) {
+                   
+				   str = response;
+				    carrierName = response.response[0].name;
+showflight = "<div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin1+"</p><p>"+departure_date1+"</p><p>"+meal1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrierName+" "+carrier_name1+"  "+carrier_no1+"<hr></p><p id='flightstops'>"+duration_time1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time1+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination1+"</p><p>"+arrival_date1+"</p><p>"+cabin1+"</p></div></center></div><br><br><br><br><br>";
+
+showflight1 = "<center><p style='color: white;'>Waiting Time</p></center><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin2+"</p><p>"+departure_date2+"</p><p>"+meal2+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'><br></p><p><hr>"+carrierName+" "+carrier_name2+"  "+carrier_no2+"<hr></p><p id='flightstops'>"+duration_time2+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time2+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination2+"</p><p>"+arrival_date2+"</p><p>"+cabin2+"</p></div></center></div><br><br><br><br>"; 
+
+showflight2 = "<center><p style='color: white;'>Waiting Time </p></center><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time3+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin3+"</p><p>"+departure_date3+"</p><p>"+meal3+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'><br></p><p><hr>"+carrierName+" "+carrier_name3+"  "+carrier_no3+"<hr></p><p id='flightstops'>"+duration_time3+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time3+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination3+"</p><p>"+arrival_date3+"</p><p>"+cabin3+"</p></div></center></div><br><br><br><br><br><br><br><a onclick='bookflight(\""+flightdetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 100%;  border-color: black; text-shadow: none; color: white;' >Book Flight</button></a> "; 
+
+ $("#wrapper").append(showflight); 
+ $("#wrapper").append(showflight1);
+ $("#wrapper").append(showflight2);
+ }});
+}
+
+//for connecting flights///
+
+
+
+
+//getflightdetails();
+	document.getElementById('emailid').innerHTML=email;
+	document.getElementById("userPic").src =fbpic;
+	
+}
+
+
+		</script>
+   <script type="text/javascript" src="js/menu.js"></script>
+    </head>
+    
+     <body onload="callflightresult()" style="background-image:url('img/2.png');background-size:cover; background-repeat: no-repeat;
+    background-attachment: fixed;">
+         <div id="signup_page" data-role="page" style="text-shadow: none;" >
+		<!-- <div id="wrapper" data-role="content"  style="text-shadow: none;" > -->
+				<!-- <div class="col-md-4"> -->
+				 
+				<!-- </div> -->
+			<!-- </div>		 -->
+		<div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">DETAILS</h1>
+             <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a>
+			 <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
+            <input type="hidden" id="edt_mail" />
+        </div>
+		  <div data-role="panel" id="myPanel" data-display="push" data-position="right" data-theme="b">
+              <center>
+			 <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
+			 <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50% !important ;height: 100px;width: 50%;"/></a>
+			<div id="emailid" style="color: white;" ></div></center> 
+			
+			<br/><br/>
+			
+			<!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
+           <ul data-role="listview" data-inset="false" data-theme="b"> 
+				
+                  <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+			 	  <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li> 
+				  <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li> 
+				  <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+				  <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li> 
+				  <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li> 
+				  <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li> 
+				  <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li> 
+				  <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li> 
+				  <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li> 
+				  <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+				  <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li> 
+				  <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li> 
+				  <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+				  <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>	
+				  <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li> 				  
+				  <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>	
+				  <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li> 
+				  <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul> 
+
+
+         </div>
+		  
+		  
+
+		<div data-role="content">
+		<section id="content" class="container">
+
+            
+
+               <center><h4 class="page-title"></h4></center>
+	<div class="block-area">
+                   <div>
+                        <div style=" class="col-md-12 col-sm-12 col-xs-12">
+						<center><h2 style="color: white;"><img src='img/flighticon.png'/>Flight Details</h2>
+						<p id="date_dep" style="color: white;"></p></center>
+						<div id="nonstop" style="color: white;">
+					</div>
+						
+						<!-- <div id="loader" class="ball"></div> -->
+						<!-- <br> -->
+					<!-- <center><p style="color:white;" id="loadertxt">Checking Flight details...</p></center> -->
+                           <!-- <div> <input style="color: black;" placeholder="Flying From" type="text" id="origin"  list="originCode" onkeyup="getorigincitycode();"/> -->
+						<!-- <datalist id="originCode"> -->
+						<!-- </datalist> -->
+					<!-- </div> -->
+					<!-- <center><img src='img/directionArrows.png'/></center> -->
+					<!-- <div> <input style="color: black;" type="text" id="destination" placeholder="Flying To" list="destinationCode" onkeyup="getdestinationcitycode();"/> -->
+					<!-- <datalist id="destinationCode"></datalist> -->
+					<!-- </div> -->
+					
+					<!-- <div style="width: 100%; color: white; ">  -->
+					<!-- <label >Departure Date</label> -->
+					<!-- <input style="color: black;" type="date" id="departureDate" placeholder="Departure Date" /> -->
+					
+					<!-- </div> -->
+					<div id="wrapper" >
+					
+					</div>
+					
+					<!-- <div id="connecting" style="color: white;"> -->
+					<!-- </div> -->
+					
+					<div id="wrapper1" >
+				
+				
+			
+			
+										</div>
+					
+					
+					
+				
+					
+		
+					
+					
+					<br><br><br><br>
+						
+					<!-- <div>   -->
+					<!-- <select style="color: black;" type="text" id="ticketclass" > -->
+     
+						   <!-- <option>Coach/Economy</option> -->
+						   <!-- <option>Business</option>  -->
+							
+									<!-- </select> -->
+					<!-- </div> -->
+				<!-- <a onclick="getflightdetails()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: white;" >Find Flights</button></a> <br><br> -->
+                        </div> 
+						
+						
+                    </div>
+					
+					
+					
+                </div>
+
+            </section>
+         </div>
+		 
+		 
+        </div>
+    </body>
+</html>

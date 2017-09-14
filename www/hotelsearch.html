@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	
+		<link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        <title>Go Virtual</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+		<script language="JavaScript">
+
+</script>
+	<style>
+			#cat{
+				
+				    background: #033739;
+					color: white;
+					margin-left: 28px;
+					margin-top: 20px;
+					text-align: center;
+					width: 100px;
+			}
+			#image1{
+				width:100px;
+				height:60px;
+				margin-left: -15px;
+				margin-bottom: 10px;
+			}
+			#heading{
+				font-size:12px;
+			}
+			#gitem
+			{  margin-top: 20px;
+			margin-bottom:5px
+			
+			}
+			#img
+			{  height: 150px;
+					width: 100%;
+			
+			}
+			#center
+			{
+			background: #033739;
+			padding: 5px;
+			}
+			#col
+			{
+			color:#fff;
+			
+			}
+			#mar
+			{  margin-top:15px;
+				margin-bottom:15px;
+			}
+			#btn
+			{
+			background: #333;
+			width: 100%;
+			border-color: black;
+			}
+		</style>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w&libraries=geometry"></script>
+        <script>
+		 function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+			
+		function calcDistance(p1, p2) {
+		return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) * 0.62 / 1000).toFixed(2);
+		}
+		
+		
+		
+		</script>
+	<script>
+
+function getcitycode()
+{
+  var destination = $("#destination").val();
+ var destination_array = [];
+ $.ajax({
+                type: "GET",
+                url: "https://iatacodes.org/api/v6/autocomplete.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&query="+destination+"",
+                cache: false,
+                crossDomain: true,
+                dataType: "jsonp",
+                success: function (response) {
+                    var str = response;
+					<!-- console.log(response); -->
+							
+					<!-- var tt; -->
+					for (i in str)
+                    {
+                      <!-- console.log(str[i].airports); -->
+					   var obj = str[i].airports;
+					   var obj2 = str[i].cities;
+
+					   for(j in obj , obj2){
+					     <!-- console.log(obj[j].code);  -->
+						  <!-- console.log(obj[j].name); -->
+							<!-- console.log(obj[j].country_name); -->
+							code = obj[j].code;
+							country = obj[j].country_name;
+							airport = obj[j].name;
+							city = obj2[j].name;
+							<!-- document.getElementById("citycode").innerHTML ="Country : " +country; -->
+							<!-- document.getElementById("country").innerHTML ="City Code : " + code; -->
+							<!-- document.getElementById("airport").innerHTML ="Airport : " + airport; -->
+							
+
+							<!-- console.log(destination_array.join()); -->
+							destination_array.splice(j, 0, city +", " + country + "~" + code);
+							<!-- console.log(destination_array[j]); -->
+
+						 }
+                    }
+						var sel = document.getElementById('destinationCode');
+						
+						for(var i = 0; i < destination_array.length; i++) {
+							var opt = document.createElement('option');
+							opt.innerHTML = destination_array[i];
+							opt.value = destination_array[i];
+							sel.appendChild(opt);
+						}
+										}
+									});
+							
+
+}
+
+
+function search_hotels()
+{  
+	var d = $("#destination").val();
+	var str1 = d;
+	var toDestination = str1.substr(str1.indexOf("~") + 1);
+	var  adultcount = $("#adult").val();
+	var childrencount = $("#children").val();
+	<!-- var infantscount = $("#infants").val(); -->
+	var checkinDate = $("#checkinDate").val();
+	var checkoutDate = $("#checkoutDate").val();
+   
+	  if ( $.trim(toDestination).length > 0)
+	  {
+		 if ($.trim(checkinDate).length > 0 && $.trim(checkoutDate).length > 0   )
+		
+		{
+
+				if(checkinDate <= checkoutDate)
+		{
+		    console.log("city code: ",toDestination,"adult: ",adultcount,"childrencount: ",childrencount,"checkin: ",checkinDate,"checkoutDate: ",checkoutDate);
+				window.location="hotelsearchresults.html?user="+user_id+"&email="+email+"&fbpic="+fbpic+"&destination="+toDestination+"&adultcount="+adultcount+"&childrencount="+childrencount+"&checkinDate="+checkinDate+"&checkoutDate="+checkoutDate+"";
+				} else{alert("Invalid Checkin and Checkout dates ");}
+		}else{ alert("Please provide Checkin and Checkout Date");}
+	
+	}else{ alert("Please provide Hotel Destination city");}
+}
+
+
+
+		</script>
+   <script type="text/javascript" src="js/menu.js"></script>
+    </head>
+    
+     <body onload="op();" style="background-image:url('img/2.png');background-size:cover; background-repeat: no-repeat;
+    background-attachment: fixed;">
+         <div id="signup_page" data-role="page" style="text-shadow: none;" >
+		<div id="wrapper" data-role="content"  style="text-shadow: none;" >
+				<div class="col-md-4">
+				 
+				</div>
+			</div>		
+		<div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">DETAILS</h1>
+            <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a>
+			 <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
+            <input type="hidden" id="edt_mail" />
+        </div>
+		  <div data-role="panel" id="myPanel" data-display="push" data-position="right" data-theme="b">
+              <center>
+			 <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
+			 <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;"/></a>
+			<div id="emailid" style="color: white;" ></div></center> 
+			
+			<br/><br/>
+			
+			<!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
+           <ul data-role="listview" data-inset="false" data-theme="b"> 
+				
+                  <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+				  <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li> 
+				  <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li> 
+				  <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+				  <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li> 
+				  <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li> 
+				  <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li> 
+				  <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li> 
+				  <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li> 
+				  <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li> 
+				  <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+				  <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li> 
+				  <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li> 
+				  <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+				  <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>	
+				  <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li> 				  
+				  <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>	
+				  <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li> 
+				  <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul> 
+
+
+         </div>
+		  
+		  
+
+		<div data-role="content">
+		<section id="content" class="container">
+
+            
+
+               <center><h4 class="page-title"></h4></center>
+	<div class="block-area">
+                   <div>
+				   	<center><h2 style="color: white;"><img src='img/hotel.png'/>Search Hotels</h2></center>
+                        <div style="background-color:rgba(255, 160, 18, 0.5); border-radius: 10px; text-shadow: none;" class="col-md-12 col-sm-12 col-xs-12">
+					
+						<br>
+						
+						
+                           <!-- <div> <input style="color: black;" placeholder="Flying From City" type="text" id="origin"  list="originCode" onkeyup="getorigincitycode();"/> -->
+						<!-- <datalist id="originCode"> -->
+						<!-- </datalist> -->
+					<!-- </div> -->
+					<!-- <center><img src='img/directionArrows.png'/></center> -->
+					<div> <input style="color: black;" type="text" id="destination" placeholder="City " list="destinationCode" onkeyup="getcitycode();"/>
+					<datalist id="destinationCode"></datalist>
+					</div>
+					
+					<div style="width: 100%; color: white; "> 
+					<label >Check-in Date</label>
+					<input style="color: black;" type="date"  id="checkinDate" placeholder="check-in Date" />
+					
+					</div>
+					<div style="width: 100%; color: white; "> 
+					<label >Check-out Date</label>
+					<input style="color: black;" type="date"  id="checkoutDate" placeholder="Check-out Date" />
+					
+					</div>
+					<center><div class="col-md-12 col-sm-12 col-xs-12" style="display: flex;">
+					<div class="col-md-6 col-sm-6 col-xs-6" style="float: left;"> 
+							<label  style="color: white;">Adult</label>
+							 <select class="ghg" style="color: black; " type="text" id="adult" placeholder="Adult">
+							
+						   <option>1</option>
+						   <option>2</option> 
+							<option>3</option>
+						   <option>4</option>
+							<option>5</option>
+							 <option>6</option>
+							  <option>7</option>
+							   <option>8</option>
+								<option>9</option>
+								 <option>10</option>
+									</select>
+										
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-6" style="float: right;"> 
+							
+							<label style="color: white; ">Children</label>
+					 <select style="color: black; " type="text" id="children" >
+					 <!-- &nbsp;&nbsp;&nbsp; -->
+					    <option>0</option>
+					   <option>1</option>
+					   <option>2</option> 
+						<option>3</option>
+					   <option>4</option>
+						<option>5</option>
+						 <option>6</option>
+						  <option>7</option>
+						   <option>8</option>
+							<option>9</option>
+							 <option>10</option>
+								</select>
+					</div>
+				
+				
+				
+										
+										</div></center>
+						
+					
+					
+					
+				
+					
+		
+					
+					
+					<br><br><br><br>
+					<!-- <div>   -->
+					<!-- <select style="color: black;" type="text" id="ticketclass" > -->
+     
+						   <!-- <option>COACH</option> -->
+						   <!-- <option>BUSINESS</option>  -->
+							
+									<!-- </select> -->
+					<!-- </div> -->
+					<br><br>
+				<a onclick="search_hotels()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: white;" >Find Hotels</button></a> <br><br>
+                        </div> 
+						
+						
+                    </div>
+					
+					
+					
+                </div>
+
+            </section>
+         </div>
+		 
+		 
+        </div>
+    </body>
+</html>

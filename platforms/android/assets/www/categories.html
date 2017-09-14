@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+    <title>Go Virtual</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener("backbutton", function(e) {
+            <!-- if($.mobile.activePage.is('#homepage')){ -->
+            /* 
+             Event preventDefault/stopPropagation not required as adding backbutton
+              listener itself override the default behaviour. Refer below PhoneGap link.
+            */
+            //e.preventDefault();
+            navigator.app.exitApp();
+            <!-- } -->
+            <!-- else { -->
+            <!-- navigator.app.backHistory() -->
+            <!-- } -->
+        }, false);
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var user_id = getParameterByName('user');
+        var email = getParameterByName('email');
+        var fbpic = getParameterByName('fbpic');
+
+        function op() {
+            document.getElementById("userPic").src = 'http://graph.facebook.com/' + fbpic + '/picture?type=small';
+            document.getElementById('emailid').innerHTML = email;
+        }
+    </script>
+
+
+    <!-- function supermarketpage() { -->
+    <!-- window.location="innersupermarket.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function barpage() { -->
+    <!-- window.location="bar.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function restaurantpage() { -->
+    <!-- window.location="restaurant.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function nightclubspage() { -->
+    <!-- window.location="nightclub.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function carspage() { -->
+    <!-- window.location="cars.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function hospitalpage() { -->
+    <!-- window.location="hospital.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function hotelpage() { -->
+    <!-- window.location="hotel.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function clothingpage() { -->
+    <!-- window.location="clothing.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function moviepage() { -->
+    <!-- window.location="movie.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function pharmacypage() { -->
+    <!-- window.location="pharmacy.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function massagepage() { -->
+    <!-- window.location="massage.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function hairsalonpage() { -->
+    <!-- window.location="hairsalon.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function casinopage() { -->
+    <!-- window.location="casino.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function drycleanpage() { -->
+    <!-- window.location="dryclean.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function tailorpage() { -->
+    <!-- window.location="tailor.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function airlinepage() { -->
+    <!-- window.location="airline.html?user="+user_id+""; -->
+    <!-- } -->
+    <!-- function logout() { -->
+    <!-- window.location="login.html"; -->
+    <!-- } -->
+
+
+    <!-- </script> -->
+    <script>
+    </script>
+    <script type="text/javascript" src="js/menu.js"></script>
+</head>
+
+<body onload="op();" style="background-image:url('img/2.png');background-size:cover; background-repeat: no-repeat;
+    background-attachment: fixed; ">
+    <div id="signup_page" data-role="page" style="text-shadow: none;">
+        <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">CATEGORIES</h1>
+            <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a>
+            <!-- <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a> -->
+            <input type="hidden" id="edt_mail" />
+        </div>
+        <div data-role="panel" id="myPanel" data-display="push" data-position="right" data-theme="b">
+            <center>
+                <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
+                <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;" /></a>
+                <div id="emailid" style="color: white;"></div>
+            </center>
+
+            <br/><br/>
+
+            <!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
+            <ul data-role="listview" data-inset="false" data-theme="b">
+
+                <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+                <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li>
+                <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+                <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
+                <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
+                <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
+                <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
+                <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
+                <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
+                <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+                <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Spa</a></li>
+                <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
+                <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+                <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
+                <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
+                <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
+                <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
+                <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul>
+
+
+        </div>
+
+    </div>
+
+
+    <div data-role="content" style="text-shadow: none; ">
+        <section id="content" class="container">
+
+
+
+            <center>
+                <h4 class="page-title"></h4>
+            </center>
+
+
+
+            <div class="block-area" style=" margin-top: 50px;">
+
+                <div>
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="airlinepage()">
+
+                            <img src="img/photo-gallery/air.jpg" style="width:100%; border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="airlinepage()" style="font-size: 12px;"> Airlines</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="barpage()">
+
+                            <img src="img/photo-gallery/thumb1.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="barpage()" style="font-size: 12px;">Bars</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="carspage()">
+
+                            <img src="img/photo-gallery/scar.jpg" style="width:100%  ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="carspage()" style="font-size: 12px;">Cars</a></h3>
+                        </center>
+
+                    </div>
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="casinopage()">
+
+                            <img src="img/photo-gallery/casinos.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="casinopage()" style="font-size: 12px;"> Casinos</a></h3>
+                        </center>
+
+                    </div>
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="clothingpage()">
+
+                            <img src="img/photo-gallery/sclothing.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="clothingpage()" style="font-size: 12px;">Clothing</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="drycleanpage()">
+
+                            <img src="img/photo-gallery/3.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="drycleanpage()" style="font-size: 12px;"> Dry Clean</a></h3>
+                        </center>
+
+                    </div>
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="hairsalonpage()">
+
+                            <img src="img/photo-gallery/hairsalon.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="hairsalonpage()" style="font-size: 12px;"> Hair Salon</a></h3>
+                        </center>
+
+                    </div>
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="hospitalpage()">
+
+                            <img src="img/photo-gallery/shospital.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="hospitalpage()" style="font-size: 12px;">Hospitals</a></h3>
+                        </center>
+
+                    </div>
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="hotelpage()">
+
+                            <img src="img/photo-gallery/shotel.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="hotelpage()" style="font-size: 12px;">Hotels</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="massagepage()">
+
+                            <img src="img/photo-gallery/massage.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="massagepage()" style="font-size: 12px;">Spa</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="moviepage()">
+
+                            <img src="img/photo-gallery/Movie-hd-app-android.png" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="moviepage()" style="font-size: 12px;">Movies</a></h3>
+                        </center>
+
+                    </div>
+
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="nightclubspage()">
+
+                            <img src="img/photo-gallery/superbox-thumb-4.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="nightclubspage()" style="font-size: 12px;">Night Clubs</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="pharmacypage()">
+
+                            <img src="img/photo-gallery/medical.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="pharmacypage()" style="font-size: 12px;">Pharmacies</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="restaurantpage()">
+
+                            <img src="img/photo-gallery/superbox-thumb-2.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="restaurantpage()" style="font-size: 12px;">Restaurants</a></h3>
+                        </center>
+
+                    </div>
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="supermarketpage()">
+
+                            <img src="img/photo-gallery/superbox-thumb-1.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="supermarketpage()" style="font-size: 11px;">Supermarkets</a></h3>
+                        </center>
+
+                    </div>
+
+
+
+
+                    <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
+
+                        <a onclick="tailorpage()">
+
+                            <img src="img/photo-gallery/Tailor-1000x667.jpg" style="width:100% ;border-radius: 10px;" />
+
+                            <span><i class="fa fa-search"></i></span>
+
+                        </a>
+
+                        <center>
+                            <h3 style="margin-top:0px;"><a onclick="tailorpage()" style="font-size: 12px;"> Tailoring</a></h3>
+                        </center>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </section>
+    </div>
+
+
+    </div>
+</body>
+
+</html>

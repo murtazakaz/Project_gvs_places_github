@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- This stylesheet contains specific styles for displaying the map
+         on this page. Replace it with your own styles as described in the
+         documentation:
+         https://developers.google.com/maps/documentation/javascript/tutorial -->
+    <link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+    <!-- <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script> -->
+    <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+    <title>Go Virtual</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+        
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0
+        }
+        
+        #map {
+            height: 100%
+        }
+        
+        #cat {
+            background: #033739;
+            color: white;
+            margin-left: 28px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100px;
+        }
+        
+        #image1 {
+            width: 100px;
+            height: 60px;
+            margin-left: -15px;
+            margin-bottom: 10px;
+        }
+        
+        #heading {
+            font-size: 12px;
+        }
+        
+        #gitem {
+            margin-bottom: 5px;
+            margin-top: 20px;
+            width: 50%;
+        }
+        
+        #img {
+            width: 100%
+        }
+        
+        #center {
+            background: #033739;
+            padding: 5px;
+        }
+        
+        #col {
+            color: #fff;
+        }
+    </style>
+    <script>
+        function initMap() {
+            var address = getParameterByName('address');
+            console.log(address);
+            var city = getParameterByName('city');
+            var country = getParameterByName('country');
+
+            navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+                timeout: 30000
+            });
+
+            function onSuccess(position) {
+                var lat = position.coords.latitude;
+                var lang = position.coords.longitude;
+
+                //Google Maps
+                var myLatlng = new google.maps.LatLng(lat, lang);
+                // var mapOptions = {zoom: 4,center: myLatlng}
+                // var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                //var marker = new google.maps.Marker({position: myLatlng,map: map});
+
+
+                var chicago = myLatlng;
+                //{lat: 41.85, lng: -87.65};
+                var geocoder = new google.maps.Geocoder();
+                var location = address + " " + city + " " + country;
+                console.log(location);
+                geocoder.geocode({
+                    'address': location
+                }, function(results, status) {
+
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        dlat = results[0].geometry.location.lat();
+                        dlng = results[0].geometry.location.lng();
+                        console.log("lat lng ", dlat + "," + dlng);
+                        var indianapolis = {
+                            lat: dlat,
+                            lng: dlng
+                        };
+
+
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            center: chicago,
+                            zoom: 7
+                        });
+
+                        var directionsDisplay = new google.maps.DirectionsRenderer({
+                            map: map
+                        });
+                        directionsDisplay.setMap(map);
+                        directionsDisplay.setOptions({
+                            suppressMarkers: true
+                        });
+                        var image = 'img/gpsdestination.png';
+
+                        var beachMarker = new google.maps.Marker({
+                            position: {
+                                lat: dlat,
+                                lng: dlng
+                            },
+                            map: map,
+                            icon: image,
+
+                        });
+
+                        var hereIcon = 'img/gps.png';
+                        var beachMarker1 = new google.maps.Marker({
+                            position: chicago,
+                            map: map,
+                            icon: hereIcon
+                        });
+
+
+                        // Set destination, origin and travel mode.
+                        var request = {
+                            destination: indianapolis,
+                            origin: chicago,
+                            travelMode: 'DRIVING'
+                        };
+
+                        // Pass the directions request to the directions service.
+                        var directionsService = new google.maps.DirectionsService();
+                        directionsService.route(request, function(response, status) {
+                            console.log("status", status);
+                            if (status == 'OK') {
+                                // Display the route on the map.
+                                directionsDisplay.setDirections(response);
+                            }
+                        });
+
+                    }
+
+                });
+
+            }
+
+            function onError(error) {
+                alert('code: ' + error.code + '\n' +
+                    'message: ' + error.message + '\n');
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w&callback=initMap" async defer></script>
+</head>
+
+<body>
+
+    <header id="heading" style="background: #ffa627; height:7%;padding: 2%;border-bottom: 2px solid white;">
+        <a style="text-decoration: none; font-size: medium; color: white; margin-bottom: 5%;" onclick="back()"> <img src="img/back.png" />Back </a>
+
+    </header>
+    <main style="height:90%">
+
+        <div id="map"></div>
+
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>
