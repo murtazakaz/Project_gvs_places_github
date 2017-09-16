@@ -24,6 +24,7 @@
 
      }
 
+
      function op() {
 
          $("#loadertxt").hide();
@@ -391,3 +392,5 @@
 
          window.location = "getdirection.html?user=" + user_id + "&name=" + id + "&email=" + email + "&fbpic=" + fbpic + "&address=" + address + "&city=" + city + "&country=" + country + "";
      }
+
+     function placedirectionmap(place_lat, place_lng) { window.location = "getplacedirections.html?user=" + user_id + "&email=" + email + "&fbpic=" + fbpic + "&place_lat=" + place_lat + "&place_lng=" + place_lng + ""; }

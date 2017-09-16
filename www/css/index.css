@@ -1,109 +1,182 @@
-#pin{color:#000;
-    text-shadow: 0 0px 0 ;}    
-	/*index starts*/
-#main_login{
-    padding-top:100px;
+#pin {
+    color: #000;
+    text-shadow: 0 0px 0;
 }
-#remlabel{
-    background:transparent;
-    border:none;
-    color:white;
-    font-family:'Microsoft NeoGothic';
-}
-#username{
-    border: none;
-    background-color: black;
-    color: white;
-    font-family:'Microsoft NeoGothic';
-}
-#pass{
-    border: none;
-    background-color: black;
-    color: white;
-    font-family:'Microsoft NeoGothic';
-}
-#frgtpass{
-    font-size:medium;
-    color:white;
-    text-decoration:none;
-    margin:auto;
-    font-family:'Microsoft NeoGothic';margin-left:auto;
-}
-#logon{
-    background-color:#ffa627;
-    color:white; 
-    font-family:'Microsoft NeoGothic';
-    font-size:large;
-}
-#signupp{
-    color: white;
-    text-decoration:none;
-    }
-#frgt_header h3{
-    text-align:center;color:gray;
-}
-                                                    /*index ends*/
 
-                                                    /*signup starts*/
-#header_signup{
-    background-color:#ffa627;
-    color:white;
-    font-family:'Microsoft NeoGothic';
+
+/*index starts*/
+
+#main_login {
+    padding-top: 100px;
 }
-#fullname{
+
+#remlabel {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#username {
     border: none;
     background-color: black;
     color: white;
-    font-family:'Microsoft NeoGothic';
+    font-family: 'Microsoft NeoGothic';
 }
-#sign_email{
+
+#pass {
     border: none;
     background-color: black;
     color: white;
-    font-family:'Microsoft NeoGothic';
+    font-family: 'Microsoft NeoGothic';
 }
-#sign_pass{
-    border: none;
-    background-color: black;
+
+#frgtpass {
+    font-size: medium;
     color: white;
-    font-family:'Microsoft NeoGothic';
-}
-#con_pass{
-    border: none;
-    background-color: black;
-    color: white;
-    font-family:'Microsoft NeoGothic';
-}
-#sign_phone{
-    border: none;
-    background-color: black;
-    color: white;
-    font-family:'Microsoft NeoGothic';
-}
-#signup{
-    background-color:#ffa627;
-    color:white; 
-    padding:15px 0; 
-    font-family:'Microsoft NeoGothic';
-    font-size:large;
-}
-                                                     /*signup ends*/
-                                                    /*home starts*/
-#header_home{
-    background-color:#ffa627;
-    color:white;
-    }  
-#_home{
-    background-color:dimgrey;
-}                                                  
-                                                    /*home ends*/
-#addcart{
-    background-color:#75bf42;
-    color:white; 
-    padding:15px 0; 
-    font-family:'Microsoft NeoGothic';
-    font-size:large;
-}
-#go_back{
     text-decoration: none;
+    margin: auto;
+    font-family: 'Microsoft NeoGothic';
+    margin-left: auto;
+}
+
+#logon {
+    background-color: #ffa627;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+    font-size: large;
+}
+
+#signupp {
+    color: white;
+    text-decoration: none;
+}
+
+#frgt_header h3 {
+    text-align: center;
+    color: gray;
+}
+
+
+/*index ends*/
+
+
+/*signup starts*/
+
+#header_signup {
+    /* background-color: #ffa627; */
+    background-color: #279675;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#fullname {
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#sign_email {
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#sign_pass {
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#con_pass {
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#sign_phone {
+    border: none;
+    background-color: black;
+    color: white;
+    font-family: 'Microsoft NeoGothic';
+}
+
+#signup {
+    /* background-color: #ffa627; */
+    background-color: #279675;
+    color: white;
+    padding: 15px 0;
+    font-family: 'Microsoft NeoGothic';
+    font-size: large;
+}
+
+
+/*signup ends*/
+
+
+/*home starts*/
+
+#header_home {
+    /* background-color: #ffa627; */
+    background-color: #279675;
+    color: white;
+}
+
+#_home {
+    background-color: dimgrey;
+}
+
+
+/*home ends*/
+
+#addcart {
+    background-color: #75bf42;
+    color: white;
+    padding: 15px 0;
+    font-family: 'Microsoft NeoGothic';
+    font-size: large;
+}
+
+#go_back {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url('fonts/lato.woff2') format('woff2');
+}
+
+* {
+    font-family: Lato;
+}
+
+div#myPanel {
+    background: #279675;
+}
+
+.ui-body-b,
+.ui-page-theme-b .ui-body-inherit,
+html .ui-bar-b .ui-body-inherit,
+html .ui-body-b .ui-body-inherit,
+html body .ui-group-theme-b .ui-body-inherit,
+html .ui-panel-page-container-b {
+    background: #ffffff;
+    border-color: #1d1d1d;
+    color: #fff;
+    text-shadow: 0 0px 0;
+}
+
+.ui-page-theme-b .ui-btn:active,
+html .ui-bar-b .ui-btn:active,
+html .ui-body-b .ui-btn:active,
+html body .ui-group-theme-b .ui-btn:active,
+html head+body .ui-btn.ui-btn-b:active {
+    background: #279675;
+    border-color: #279675;
+    color: #fff;
+    text-shadow: 0 1px 0 #111;
 }

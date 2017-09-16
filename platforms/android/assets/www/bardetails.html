@@ -92,6 +92,15 @@
     <script>
         $(function initialize() {
 
+            document.addEventListener("deviceready", fetchdata, false);
+        });
+
+        function fetchdata() {
+            op();
+            var options = {
+                dimBackground: true
+            };
+            SpinnerPlugin.activityStart("Fetching...", options);
             // <!-- //var url = window.location.pathname; -->
             // <!-- var is_input = document.URL.indexOf('?'); -->
 
@@ -105,29 +114,29 @@
             var user_id = getParameterByName('user');
             var addr_str = getParameterByName('name');
 
-            onSuccess = function(position) {
-                clat = position.coords.latitude;
-                clng = position.coords.longitude;
-                currentposition = position.coords.latitude + "," + position.coords.longitude;
+            // onSuccess = function(position) {
+            //     clat = position.coords.latitude;
+            //     clng = position.coords.longitude;
+            //     currentposition = position.coords.latitude + "," + position.coords.longitude;
 
-                //	alert(lat +" "+ lon);
-                /* alert('Latitude: '          + position.coords.latitude          + '\n' +
-						  'Longitude: '         + position.coords.longitude         + '\n' +
-						  'Altitude: '          + position.coords.altitude          + '\n' +
-						  'Accuracy: '          + position.coords.accuracy          + '\n' +
-						  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-						  'Heading: '           + position.coords.heading           + '\n' +
-						  'Speed: '             + position.coords.speed             + '\n' +
-						  'Timestamp: '         + position.timestamp                + '\n'); */
-            };
+            //     //	alert(lat +" "+ lon);
+            //     /* alert('Latitude: '          + position.coords.latitude          + '\n' +
+            // 			  'Longitude: '         + position.coords.longitude         + '\n' +
+            // 			  'Altitude: '          + position.coords.altitude          + '\n' +
+            // 			  'Accuracy: '          + position.coords.accuracy          + '\n' +
+            // 			  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+            // 			  'Heading: '           + position.coords.heading           + '\n' +
+            // 			  'Speed: '             + position.coords.speed             + '\n' +
+            // 			  'Timestamp: '         + position.timestamp                + '\n'); */
+            // };
 
             // onError Callback receives a PositionError object
             //
-            function onError(error) {
-                alert('Someting might be wrong\n Please Check Internet Connection or \n GPS Location should be turn ON');
-            }
+            // function onError(error) {
+            //     alert('Someting might be wrong\n Please Check Internet Connection or \n GPS Location should be turn ON');
+            // }
 
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            // navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
             $.ajax({
                 type: "POST",
@@ -141,38 +150,49 @@
                     var str = data;
                     var tt;
                     for (i in str) {
-                        var geocoder = new google.maps.Geocoder();
+                        // var geocoder = new google.maps.Geocoder();
                         var address = str[i].address + " " + str[i].city + " " + str[i].country;
                         //alert(address);
-                        geocoder.geocode({
-                            'address': address
-                        }, function(results, status) {
+                        // geocoder.geocode({
+                        //     'address': address
+                        // }, function(results, status) {
 
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                dlat = results[0].geometry.location.lat();
-                                dlng = results[0].geometry.location.lng();
-                                destposition = dlat + "," + dlng;
-                                var p1 = new google.maps.LatLng(clat, clng);
-                                var p2 = new google.maps.LatLng(dlat, dlng);
+                        // if (status == google.maps.GeocoderStatus.OK) {
+                        //     dlat = results[0].geometry.location.lat();
+                        //     dlng = results[0].geometry.location.lng();
+                        //     destposition = dlat + "," + dlng;
+                        //     var p1 = new google.maps.LatLng(clat, clng);
+                        //     var p2 = new google.maps.LatLng(dlat, dlng);
 
-                                //alert(calcDistance(p1, p2));
-                                miles = calcDistance(p1, p2);
+                        //     //alert(calcDistance(p1, p2));
+                        //     miles = calcDistance(p1, p2);
 
-                                tt = "<div data-role='content'><section id='content' class='container'><center><h4 class='page-title'></h4></center><div class='block-area'><div><div class='col-md-12 col-sm-12 col-xs-12'><div id='carousel-example-generic'class='carousel slide'data-ride='carousel'><img src='" + str[i].image1 + "' id='img' style='width:100%'></div><br><div class='row'><div class='col-md-6'><h3 id='col' style='color:#fff'>" + str[i].name + "</h3></div><div class='col-md-6'><a href='barbooking.html?user=" + user_id + "&name=" + addr_str + "&price=" + str[i].price + "&p_name=" + str[i].name + "'><button id='btn' type='button' class='btn btn-primary'>Book Now</button></a></div></div><h4 id='col' style='color:#fff'>Price : $ " + str[i].price + "/n</h4><hr><h4 id='col' style='color:#fff'>Distance: " + miles + " miles away</h4><hr><h4 id='col' style='color:#fff'>Description</h4><p id='col' style='color:#fff'>" + str[i].description + "</p><hr id='mar' style='margin-top:15px;margin-bottom:15px'><h3 id='col' style='color:#fff;'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Direction</a></h3><br><a onclick='showreview(" + str[i].id + ")'><button id='btn' type='button' class='btn btn-primary'>Check Reviews</button></a><br><br><br></div></div></div></section></div> ";
-                                $("#wrapper").append(tt);
+                        // tt = "<div data-role='content'><section id='content' class='container'><center><h4 class='page-title'></h4></center><div class='block-area'><div><div class='col-md-12 col-sm-12 col-xs-12'><div id='carousel-example-generic'class='carousel slide'data-ride='carousel'><img src='" + str[i].image1 + "' id='img' style='width:100%'></div><br><div class='row'><div class='col-md-6'><h3 id='col' style='color:#fff'>" + str[i].name + "</h3></div><div class='col-md-6'><a href='barbooking.html?user=" + user_id + "&name=" + addr_str + "&price=" + str[i].price + "&p_name=" + str[i].name + "'><button id='btn' type='button' class='btn btn-primary'>Book Now</button></a></div></div><h4 id='col' style='color:#fff'>Price : $ " + str[i].price + "/n</h4><hr><h4 id='col' style='color:#fff'>Distance: " + miles + " miles away</h4><hr><h4 id='col' style='color:#fff'>Description</h4><p id='col' style='color:#fff'>" + str[i].description + "</p><hr id='mar' style='margin-top:15px;margin-bottom:15px'><h3 id='col' style='color:#fff;'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Direction</a></h3><br><a onclick='showreview(" + str[i].id + ")'><button id='btn' type='button' class='btn btn-primary'>Check Reviews</button></a><br><br><br></div></div></div></section></div> ";
+                        tt = "<div style='margin: 5%;background: #ffffff;border-radius:10px;box-shadow: 1px 1px 1px 1px #000;'><img src='" + str[i].image1 + "' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;'><div style='color: #333;margin:5%;'><center><h3>" + str[i].name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-2 col-sm-3 col-xs-2 col-lg-2'>Price</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>$ " + str[i].price + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Now</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].action + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].address + ", " + str[i].city + ", " + str[i].country + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Directions</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'><img src='img/review.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='showreview(" + str[i].id + ")'>See Reviews</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'><img src='img/info.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].description + "</div></div></div></div><br></div></div><br><br><br>";
 
-                            }
-                        });
+                        var booknow = "<a href='barbooking.html?user=" + user_id + "&name=" + addr_str + "&price=" + str[i].price + "&p_name=" + str[i].name + "'><button style='width:50%; ' id='btn' type='button' class='btn btn-primary'>Book Now</button></a>";
+                        $("#wrapper").append(tt);
+                        $("#bookbtn").append(booknow);
+
+                        //  }
+                        // });
                     }
+                    SpinnerPlugin.activityStop();
+                },
+                error: function(textStatus, errorThrown) {
+                    // var tt = "<div style='margin-top:10%; background: white; border-radius: 10px;'><center><p style='font-size: small ; color: #333;'>Something went wrong<br>Check Internet Connection</p><a onclick='fetchdata()'>Retry</a></center></div>";
+                    // $("#wrapper").append(tt);
+                    navigator.notification.alert('Check Internet connection', fetchdata, 'Error', 'Try Again');
+                    SpinnerPlugin.activityStop();
                 }
             });
-        });
+        }
     </script>
 
     <script type="text/javascript" src="js/menu.js"></script>
 </head>
 
-<body onload="op();" style="background-image:url('img/2.png');background-size:cover; background-repeat: no-repeat;
+<body onload="op();" style="background-size:cover; background-repeat: no-repeat;
     background-attachment: fixed;">
     <div id="signup_page" data-role="page" style="text-shadow: none;">
         <div id="wrapper" data-role="content" style="text-shadow: none;">
@@ -276,8 +296,13 @@
             </section>
          </div> -->
 
-
+        <div style="margin-top: 5%; background: white;" data-position="fixed" data-tap-toggle="false" data-role="footer">
+            <center>
+                <div style="margin: 2%;" id="bookbtn"></div>
+            </center>
+        </div>
     </div>
+
 </body>
 
 </html>
