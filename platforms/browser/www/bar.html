@@ -166,7 +166,8 @@
 
                         // tt = "<div class='gallery-item col-md-3 col-sm-3 col-xs-4'id='gitem' style='margin-bottom:5px'><a onclick='detailpage(" + str[i].id + ")'> <img src='" + str[i].image1 + "' id='img' style='width:100%'><span><i class='fa fa-search'></i></span></a><div id='center' style='background: #033739;padding: 5px;'><h1><a onclick='detailpage(" + str[i].id + ")' id='col' style='color:#fff'>" + str[i].name + "</a></h1><p id='col' style='color:#fff'><b>" + str[i].action + "</b></p><div class='row'><div class='col-md-6'><p id='col' style='color:#fff'>" + str[i].address + " </p></div<div class='col-md-6'><p id='col' style='color:#fff'>" + str[i].city + "," + str[i].country + "</p></div></div><p><b id='col' style='color:#fff'>Price: $" + str[i].price + " </b></p><div class='row'><div class='col-md-5'><p> <a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Direction</a></p></div></div></div></div>";
 
-                        tt = "<a onclick='detailpage(" + str[i].id + ")' style='color:#333'><div style='margin: 5%;background: #ffffff;border-radius:10px;border: 1px solid #ddd;'><img src='" + str[i].image1 + "' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;'><div style='color: #333;margin:5%;'><center><h3>" + str[i].name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Price</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>$ " + str[i].price + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Now</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].action + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].address + ", " + str[i].city + ", " + str[i].country + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Directions</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/info.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='detailpage(" + str[i].id + ")'>View Details</a></div></div></div></div><br><br></div></div></a>";
+                        tt = "<a onclick='detailpage(" + str[i].id + ")' style='color:#333'><div style='margin: 2%;background: #ffffff;border: 1px solid #ddd;'><img src='" + str[i].image1 + "' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;'><div style='color: #333;margin:5%;'><center><h3>" + str[i].name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Price</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>$ " + str[i].price + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Now</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].action + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].address + ", " + str[i].city + ", " + str[i].country + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Directions</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/info.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='detailpage(" + str[i].id + ")'>View Details</a></div></div></div></div><br><br></div></div></a>";
+                        // var t = "<div style='background:white;'><h3 style='font-size:large;text-align:center;'>" + str[i].name + "</h3><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12' style='padding-right: 15px; '><div class='col-md-4 col-sm-4 col-xs-4 col-lg-4'><img src='" + str[i].image1 + "' style='width:100%;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;'/></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Price:</div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'>" + str[i].price + "</div></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Now</div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'>" + str[i].action + "</div></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'>" + str[i].address + ", " + str[i].city + ", " + str[i].country + "</div></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Directions</a></div></div></div></div></div>";
                         $("#wrapper").append(tt);
 
 
@@ -195,7 +196,7 @@
                 var lang = position.coords.longitude;
                 $.ajax({
                     type: "GET",
-                    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lang + "&radius=1000&type=bar&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w",
+                    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lang + "&radius=1000&type=restaurant&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w",
                     cache: false,
                     crossDomain: true,
                     dataType: "json",
@@ -206,6 +207,7 @@
                         //  console.log('result :',response.results );
                         // console.log('result :',response.results[0].name );
                         namelist = response.results;
+                        console.log(namelist);
                         var resultdiv;
                         for (i in namelist) {
                             placeid = namelist[i].place_id;
@@ -227,7 +229,7 @@
                                 // photoreference = photoarray[0].photo_reference;
                                 //onclick='placedetails(\"" + placeid + "\")'
                                 resultdiv =
-                                    "<a onclick='placedetails(\"" + placeid + "\")' style='color:#333;' ><div style='margin: 5%;background: #ffffff;border-radius:10px;border: 1px solid #ddd;color:#333;'><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='" + photoreference + "'&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;'><div style='color: #333;margin:5%;'><center><h3>" + name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/find.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>Near by</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + vicinity + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='placedirectionmap(\"" + place_lat + "\", \"" + place_lng + "\")'>Get Directions</a></div></div></div></div></a>";
+                                    "<a onclick='placedetails(\"" + placeid + "\",\"" + photoreference + "\")' style='color:#333;' ><div style='margin: 2%;background: #ffffff;border: 1px solid #ddd;color:#333;'><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='" + photoreference + "'&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;'><div style='color: #333;margin:5%;'><center><h3>" + name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/find.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>Near by</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + vicinity + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='placedirectionmap(\"" + place_lat + "\", \"" + place_lng + "\")'>Get Directions</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/info.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='placedetails(\"" + placeid + "\",\"" + photoreference + "\")'>View Details</a></div></div></div></div></a>";
 
                                 // "<ul  data-role="listview" data-inset="true"><li><a onclick='placedetails(\""+placeid+"\")'><img src='"+icon+"'><h2>"+name+"</h2><p>"+vicinity+"</p></a></li></ul>";
 
@@ -247,8 +249,8 @@
         }
     </script>
     <script>
-        function placedetails(placeid) {
-            window.location = "placedetails.html?user=" + user_id + "&email=" + email + "&fbpic=" + fbpic + "&place_id=" + placeid + "";
+        function placedetails(placeid, photoreference) {
+            window.location = "placedetails.html?user=" + user_id + "&email=" + email + "&fbpic=" + fbpic + "&place_id=" + placeid + "&photoreference=" + photoreference + "";
         }
 
         // navigator.geolocation.getCurrentPosition(onSuccess, onError, {
@@ -299,7 +301,7 @@
     <script type="text/javascript" src="js/menu.js"></script>
 </head>
 
-<body onload="op();" style="background-size:cover; background-repeat: no-repeat;
+<body onload="op();" style="background: whitesmoke;background-size:cover; background-repeat: no-repeat;
     background-attachment: fixed;">
     <div id="signup_page" data-role="page" style="text-shadow: none;">
 
@@ -392,6 +394,37 @@
 								</div>
 							</center>
                         </div-->
+                <!-- <div style='background:white;'>
+                    <h3 style='font-size:large;text-align:center;'>name</h3>
+                    <div class='row'>
+                        <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                            <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src="https://www.w3schools.com/w3images/fjords.jpg" style='width:100%;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;margin-bottom:100%;' /></div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div> -->
                 <div id="wrapper1"> </div>
 
             </div>

@@ -15,6 +15,7 @@
     <title>Go Virtual</title>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <script>
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
@@ -28,8 +29,8 @@
     </script>
 </head>
 
-<body style="background-color:white;background-size:cover;">
-    <div id="signup_page" data-role="page" style="background-color:white;background-size:cover;">
+<body style="background: whitesmoke;background-size:cover;">
+    <div id="signup_page" data-role="page">
         <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
 
             <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">BOOKING</h1>
@@ -88,7 +89,7 @@
 
 
 
-                <div class="block-area" style="margin: 5% 5% 5% 5%;background: #ffffff;border-radius:10px; box-shadow: 0px 0px 0px 1px #ccc;
+                <div class="block-area" style="margin: 5%;background: #ffffff;bborder: 1px solid #ddd;
                 ">
                     <div class="col-md-12">
                         <h2></h2>
@@ -120,7 +121,7 @@
                                 <input type="date" class="form-control" id="date" placeholder="Date">
                             </div>
 
-                            <a href="#" style="text-decoration:none;"><input type="submit" value="Book" style="width:100%; padding:10px; background:#333; font-size: 18px; font-weight: bold;" onclick="booking();" /></a>
+                            <!-- <a href="#" style="text-decoration:none;"><input type="submit" value="Book" style="width:100%; padding:10px; background:#333; font-size: 18px; font-weight: bold;" onclick="booking();" /></a> -->
                         </form>
                     </div>
                 </div>
@@ -188,6 +189,13 @@
             }
         </script>
 
+        <div style="margin-top: 5%; background: white;" data-position="fixed" data-tap-toggle="false" data-role="footer">
+            <center>
+
+                <a onclick="booking();"><button style='text-shadow:none;width:50%;background:#333;color:white;' id='btn' type='button' class='btn btn-primary'>Book Now</button></a>
+
+            </center>
+        </div>
     </div>
 </body>
 

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+    <title>Go Virtual</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <style>
+        #cat {
+            background: #033739;
+            color: white;
+            margin-left: 28px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100px;
+        }
+        
+        #image1 {
+            width: 100px;
+            height: 60px;
+            margin-left: -15px;
+            margin-bottom: 10px;
+        }
+        
+        #heading {
+            font-size: 12px;
+        }
+        
+        #gitem {
+            margin-bottom: 5px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        #img {
+            height: 200px;
+            width: 100%;
+        }
+        
+        #center {
+            background: #033739;
+            padding: 5px;
+        }
+        
+        #col {
+            color: #fff;
+        }
+        
+        @font-face {
+            font-family: Lato;
+            src: url('fonts/lato.woff2') format('woff2');
+        }
+        
+        * {
+            font-family: Lato;
+        }
+    </style>
+    <script type="text/javascript">
+    </script>
+
+    <script>
+        // <!-- var user_id =getParameterByName('user'); -->
+        // <!-- var email =getParameterByName('email'); -->
+        function detailpage(id) {
+
+
+            window.location = "bardetails.html?user=" + user_id + "&name=" + id + "&email=" + email + "&fbpic=" + fbpic + "";
+        }
+    </script>
+    <script>
+        $(function initialize() {
+
+
+            document.addEventListener("deviceready", fetchdata, false);
+        });
+
+        function fetchdata() {
+            op();
+            var type = getParameterByName('type');
+
+            var placetype;
+            var keywords;
+            if (type == "Bar") {
+                placetype = "bar";
+                keywords = "Bar";
+            }
+            if (type == "Cars") {
+                placetype = "car_dealer";
+                keywords = "Car";
+            }
+            if (type == "Casino") {
+                placetype = "casino";
+                keywords = "Casino";
+            }
+            if (type == "Clothing") {
+                placetype = "clothing_store";
+                keywords = "Clothing";
+            }
+            if (type == "Dryclean") {
+                placetype = "laundry";
+                keywords = "Dryclean";
+            }
+            if (type == "HairSalon") {
+                placetype = "hair_care";
+                keywords = "Hair";
+            }
+            if (type == "Massage") {
+                placetype = "spa";
+                keywords = "Spa";
+            }
+            if (type == "Hospital") {
+                placetype = "hospital";
+                keywords = "Health";
+            }
+            if (type == "Movie") {
+                placetype = "movie_theater";
+                keywords = "MovieTheater";
+            }
+            if (type == "Nightclub") {
+                placetype = "night_club";
+                keywords = "Club";
+            }
+            if (type == "Restaurant") {
+                placetype = "restaurant";
+                keywords = "Food";
+            }
+            if (type == "Pharmacy") {
+                placetype = "pharmacy";
+                keywords = "Pharmacies";
+            }
+            if (type == "Supermarket") {
+                placetype = "shopping_mall";
+                keywords = "Store";
+            }
+            if (type == "Tailor") {
+                placetype = "store";
+                keywords = "Tailor";
+            }
+
+            //  alert("type " + type + " list " + placetype);
+
+            var options = {
+                dimBackground: true
+            };
+            SpinnerPlugin.activityStart("Fetching...", options);
+            $.ajax({
+                type: "POST",
+                url: "http://govirtualstore.com/app/iOS/fetchcategories.php",
+                cache: false,
+                crossDomain: true,
+                data: {
+                    type: type
+                },
+                dataType: "json",
+                success: function(response) {
+                    var str = response;
+
+                    var tt;
+                    for (i in str) {
+
+
+                        // tt = "<div class='gallery-item col-md-3 col-sm-3 col-xs-4'id='gitem' style='margin-bottom:5px'><a onclick='detailpage(" + str[i].id + ")'> <img src='" + str[i].image1 + "' id='img' style='width:100%'><span><i class='fa fa-search'></i></span></a><div id='center' style='background: #033739;padding: 5px;'><h1><a onclick='detailpage(" + str[i].id + ")' id='col' style='color:#fff'>" + str[i].name + "</a></h1><p id='col' style='color:#fff'><b>" + str[i].action + "</b></p><div class='row'><div class='col-md-6'><p id='col' style='color:#fff'>" + str[i].address + " </p></div<div class='col-md-6'><p id='col' style='color:#fff'>" + str[i].city + "," + str[i].country + "</p></div></div><p><b id='col' style='color:#fff'>Price: $" + str[i].price + " </b></p><div class='row'><div class='col-md-5'><p> <a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Direction</a></p></div></div></div></div>";
+
+                        tt = "<a onclick='detailpage(" + str[i].id + ")' style='color:#333'><div style='margin: 2%;background: #ffffff;border: 1px solid #ddd;'><img src='" + str[i].image1 + "' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;'><div style='color: #333;margin:5%;'><center><h3>" + str[i].name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Price</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>$ " + str[i].price + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Now</div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].action + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + str[i].address + ", " + str[i].city + ", " + str[i].country + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Directions</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/info.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='detailpage(" + str[i].id + ")'>View Details</a></div></div></div></div><br><br></div></div></a>";
+                        // var t = "<div style='background:white;'><h3 style='font-size:large;text-align:center;'>" + str[i].name + "</h3><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12' style='padding-right: 15px; '><div class='col-md-4 col-sm-4 col-xs-4 col-lg-4'><img src='" + str[i].image1 + "' style='width:100%;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;'/></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Price:</div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'>" + str[i].price + "</div></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Now</div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'>" + str[i].action + "</div></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'>" + str[i].address + ", " + str[i].city + ", " + str[i].country + "</div></div><div class='col-md-8 col-sm-8 col-xs-8 col-lg-8'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-5 col-sm-5 col-xs-5 col-lg-5'><a onclick='directionmap(\"" + str[i].id + "\",\"" + str[i].address + "\",\"" + str[i].city + "\",\"" + str[i].country + "\")'>Get Directions</a></div></div></div></div></div>";
+                        $("#wrapper").append(tt);
+
+                    }
+                    // SpinnerPlugin.activityStop();
+                },
+                error: function(textStatus, errorThrown) {
+                    // var tt = "<div style='margin-top:10%; background: white; border-radius: 10px;'><center><p style='font-size: small ; color: #333;'>Something went wrong<br>Check Internet Connection</p><a onclick='fetchdata()'>Retry</a></center></div>";
+                    // $("#wrapper").append(tt);
+                    navigator.notification.alert('Check Internet connection', fetchdata, 'Error', 'Try Again');
+                    SpinnerPlugin.activityStop();
+                }
+            });
+            // var options = {
+            //     dimBackground: true
+            // };
+            // SpinnerPlugin.activityStart("Fetching...", options);
+            // if (type != "Tailor") {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+                timeout: 10000
+            });
+
+            function onSuccess(position) {
+                var lat = position.coords.latitude;
+                var lang = position.coords.longitude;
+                $.ajax({
+                    type: "GET",
+                    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lang + "&radius=1000&type=" + placetype + "&&keyword=" + keywords + "&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w",
+                    cache: false,
+                    crossDomain: true,
+                    dataType: "json",
+                    success: function(response) {
+
+
+                        // console.log('Main results',response);
+                        //  console.log('result :',response.results );
+                        // console.log('result :',response.results[0].name );
+                        namelist = response.results;
+                        console.log(namelist);
+                        var resultdiv;
+                        for (i in namelist) {
+                            placeid = namelist[i].place_id;
+                            name = namelist[i].name;
+                            icon = namelist[i].icon;
+                            vicinity = namelist[i].vicinity;
+                            photoarray = namelist[i].photos;
+                            // opennow = namelist[i].opening_hours.open_now;
+                            place_lat = namelist[i].geometry.location.lat;
+                            place_lng = namelist[i].geometry.location.lng;
+
+
+                            console.log(place_lat);
+
+                            for (p in photoarray) {
+                                photoreference = photoarray[p].photo_reference;
+                                //console.log(photoreference);
+                                console.log(photoreference);
+                                // photoreference = photoarray[0].photo_reference;
+                                //onclick='placedetails(\"" + placeid + "\")'
+                                resultdiv =
+                                    "<a onclick='placedetails(\"" + placeid + "\",\"" + photoreference + "\")' style='color:#333;' ><div style='margin: 2%;background: #ffffff;border: 1px solid #ddd;color:#333;'><img src='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoreference + "&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;'><div style='color: #333;margin:5%;'><center><h3>" + name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/find.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>Near by</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>" + vicinity + "</div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/direction.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='placedirectionmap(\"" + place_lat + "\", \"" + place_lng + "\")'>Get Directions</a></div></div><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><hr><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/info.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'><a onclick='placedetails(\"" + placeid + "\",\"" + photoreference + "\")'>View Details</a></div></div></div></div></a>";
+
+                                // "<ul  data-role="listview" data-inset="true"><li><a onclick='placedetails(\""+placeid+"\")'><img src='"+icon+"'><h2>"+name+"</h2><p>"+vicinity+"</p></a></li></ul>";
+
+                                $("#wrapper1").append(resultdiv);
+
+                            }
+                        }
+                        SpinnerPlugin.activityStop();
+
+                    }
+                });
+            }
+
+            function onError(error) {
+                SpinnerPlugin.activityStop();
+                // alert('code: ' + error.code + '\n' +
+                //     'message: ' + error.message + '\n');
+                // navigator.notification.alert('Fetching Nearby failed, Turn on GPS', null, 'Error', 'Try Again');
+            }
+            // } else {
+            //     SpinnerPlugin.activityStop();
+            // }
+        }
+    </script>
+    <script>
+        function placedetails(placeid, photoreference) {
+            window.location = "placedetails.html?user=" + user_id + "&email=" + email + "&fbpic=" + fbpic + "&place_id=" + placeid + "&photoreference=" + photoreference + "";
+        }
+
+        // navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+        //     timeout: 30000
+        // });
+
+        // function onSuccess(position) {
+        //     var lat = position.coords.latitude;
+        //     var lang = position.coords.longitude;
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lang + "&radius=1000&type=restaurant&key=AIzaSyD_HxOvY1-iyAZJzc9oVnrO10zrQGZxe3w",
+        //         cache: false,
+        //         crossDomain: true,
+        //         dataType: "json",
+        //         success: function(response) {
+        //             // console.log('Main results',response);
+        //             //  console.log('result :',response.results );
+        //             // console.log('result :',response.results[0].name );
+        //             namelist = response.results;
+        //             var resultdiv;
+        //             for (i in namelist) {
+        //                 placeid = namelist[i].place_id;
+        //                 name = namelist[i].name;
+        //                 icon = namelist[i].icon;
+        //                 vicinity = namelist[i].vicinity;
+
+
+        //                 resultdiv =
+        //                     "<a onclick='placedetails(\"" + placeid + "\")'><div style='margin: 5%;background: #ffffff;border-radius:10px;border: 1px solid #ddd;'><img src='" + str[i].image1 + "' style='width:100%;height: 200px;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;'><div style='color: #333;margin:5%;'><center><h3>" + name + "</h3></center><hr><div class='row'><div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'><div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src='img/location.png' /></div><div class='col-md-1 col-sm-1 col-xs-1 col-lg-1'></div><div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>$ " + vicinity + "</div></div></div></div></a>";
+
+        //                 // "<ul  data-role="listview" data-inset="true"><li><a onclick='placedetails(\""+placeid+"\")'><img src='"+icon+"'><h2>"+name+"</h2><p>"+vicinity+"</p></a></li></ul>";
+
+        //                 $("#wrapper1").append(resultdiv);
+
+
+        //             }
+
+        //         }
+        //     });
+        // }
+
+        // function onError(error) {
+        //     alert('code: ' + error.code + '\n' +
+        //         'message: ' + error.message + '\n');
+        // }
+    </script>
+    <script type="text/javascript" src="js/menu.js"></script>
+</head>
+
+<body onload="op();" style="background: whitesmoke;background-size:cover; background-repeat: no-repeat;
+    background-attachment: fixed;">
+    <div id="signup_page" data-role="page" style="text-shadow: none;">
+
+
+
+        <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">Lists</h1>
+
+            <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a>
+            <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
+            <input type="hidden" id="edt_mail" />
+        </div>
+        <div data-role="panel" id="myPanel" data-display="push" data-position="right" data-theme="b">
+            <center>
+                <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
+                <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;" /></a>
+                <div id="emailid" style="color: white;"></div>
+            </center>
+
+            <br/><br/>
+
+            <!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
+            <ul data-role="listview" data-inset="false" data-theme="b">
+
+                <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+                <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li>
+                <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li>
+                <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+                <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
+                <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
+                <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
+                <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
+                <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
+                <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
+                <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+                <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li>
+                <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
+                <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+                <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
+                <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
+                <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
+                <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
+                <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul>
+
+
+        </div>
+
+
+
+
+        <!-- <div data-role="content"> -->
+        <section id="content" class="container">
+
+
+
+            <center>
+                <h4 class="page-title"></h4>
+            </center>
+
+            <div class="block-area">
+                <div id="wrapper"></div>
+                <!---div class="gallery-item col-md-4 col-sm-4 col-xs-4" style="margin-bottom:5px">
+                            <a href="bardetails.html">
+                                <img src="img/bar1.jpg" style="width:100%">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+							<center style="background: #033739;padding: 5px;">
+								<h5><a href="bardetails.html" style="color:#fff"><label id="bar_name">BAR</label></a></h5>
+								<h6 style="color:#fff"><b id="action">OPEN</b></h6>
+								<div class="row">
+								<div class="col-md-6">
+									<p style="color:#fff"><label id="miles">2.0</label> miles away </p>
+								</div>
+								<div class="col-md-6">
+									<p style="color:#fff" id="city">Bucktown</p>
+								</div>	
+								</div>	
+								<p style="color:#fff"><img src="img/vip.PNG"> <b>Comparing Prices $<label id="price">320</label> </b></p>
+								<div class="row">
+								<div class="col-md-3">
+									<p style="color:#fff"><b>6</b> Visits </p>
+								</div>
+								<div class="col-md-4">
+									<p style="color:#fff"><b>75</b> Points</p>
+								</div>
+								<div class="col-md-5">
+									<p><i class="fa fa-map-marker" aria-hidden="true"></i> <a href="#">Get Direction</a></p>
+								</div>
+								</div>
+							</center>
+                        </div-->
+                <!-- <div style='background:white;'>
+                    <h3 style='font-size:large;text-align:center;'>name</h3>
+                    <div class='row'>
+                        <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                            <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'><img src="https://www.w3schools.com/w3images/fjords.jpg" style='width:100%;box-shadow: 1px 1px 1px 1px #000;border-radius:10px;margin-bottom:100%;' /></div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+                            <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
+                                <div class='col-md-2 col-sm-2 col-xs-2 col-lg-2'>Price:</div>
+                                <div class='col-md-6 col-sm-6 col-xs-6 col-lg-6'>price</div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div> -->
+                <div id="wrapper1"> </div>
+
+            </div>
+
+
+
+
+
+        </section>
+    </div>
+
+
+
+</body>
+
+</html>
+
+</html>

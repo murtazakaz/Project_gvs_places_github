@@ -126,6 +126,10 @@
          // window.location="airline.html?user="+user_id+"&email="+email+"&fbpic="+fbpic+"";
      }
 
+     function subcategorypage(type) {
+         window.location = "subcategories.html?user=" + user_id + "&email=" + email + "&fbpic=" + fbpic + "&type=" + type + "";
+     }
+
      function logout() {
          disconnectUser();
          window.location = "login.html";
