@@ -29,11 +29,11 @@
     </script>
 </head>
 
-<body style="background: whitesmoke;background-size:cover;">
-    <div id="signup_page" data-role="page">
+<body>
+    <div id="signup_page" data-theme="b" data-role="page">
         <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
 
-            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">BOOKING</h1>
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">BAR</h1>
             <!-- <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a> -->
             <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
             <input type="hidden" id="edt_mail" />
@@ -89,10 +89,11 @@
 
 
 
-                <div class="block-area" style="margin: 5%;background: #ffffff;bborder: 1px solid #ddd;
+                <div class="block-area" style="margin: 5%;background: #ffffff;border: 1px solid #ddd;
                 ">
                     <div class="col-md-12">
-                        <h2></h2>
+                        <h2 style="text-align:center;color:#333">Booking</h2>
+                        <hr>
 
                         <form id="frmLogin" style="color: #333; padding: 5%;">
 
@@ -189,7 +190,7 @@
             }
         </script>
 
-        <div style="margin-top: 5%; background: white;" data-position="fixed" data-tap-toggle="false" data-role="footer">
+        <div style="margin-top: 5%; background: white;position: fixed;" data-position="fixed" data-tap-toggle="false" data-role="footer">
             <center>
 
                 <a onclick="booking();"><button style='text-shadow:none;width:50%;background:#333;color:white;' id='btn' type='button' class='btn btn-primary'>Book Now</button></a>

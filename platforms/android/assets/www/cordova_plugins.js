@@ -293,6 +293,22 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "id": "onesignal-cordova-plugin.OneSignal",
+        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
+        "pluginId": "onesignal-cordova-plugin",
+        "clobbers": [
+            "OneSignal"
+        ]
+    },
+    {
+        "id": "cordova-plugin-backbutton.Backbutton",
+        "file": "plugins/cordova-plugin-backbutton/www/Backbutton.js",
+        "pluginId": "cordova-plugin-backbutton",
+        "clobbers": [
+            "navigator.Backbutton"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -311,7 +327,9 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-dialogs": "1.3.3",
     "cordova-plugin-spinner": "1.1.0",
-    "cordova-plugin-statusbar": "2.2.3"
+    "cordova-plugin-statusbar": "2.2.3",
+    "onesignal-cordova-plugin": "2.2.0",
+    "cordova-plugin-backbutton": "0.3.0"
 };
 // BOTTOM OF METADATA
 });

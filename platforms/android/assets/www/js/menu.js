@@ -132,6 +132,10 @@
 
      function logout() {
          disconnectUser();
+         localStorage.setItem("id", "");
+         localStorage.setItem("email", "");
+         localStorage.setItem("pass", "");
+         localStorage.setItem("fbpic", "");
          window.location = "login.html";
      }
 
@@ -343,6 +347,11 @@
                          var str = data;
                          SpinnerPlugin.activityStop();
                          if (str.Status == "success") {
+
+                             localStorage.setItem("id", fbid);
+                             localStorage.setItem("email", fbname);
+                             localStorage.setItem("fbpic", fbpic);
+                             localStorage.setItem("pass", "google");
 
 
                              SpinnerPlugin.activityStop();

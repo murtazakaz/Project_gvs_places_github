@@ -77,6 +77,7 @@
     </style>
     <script>
         function initMap() {
+            document.getElementById('place').innerHTML = "Please wait while Map is loading..";
             var address = getParameterByName('address');
             console.log(address);
             var city = getParameterByName('city');
@@ -159,8 +160,10 @@
                         var directionsService = new google.maps.DirectionsService();
                         directionsService.route(request, function(response, status) {
                             console.log("status", status);
+                            document.getElementById('place').innerHTML = "";
                             if (status == 'OK') {
                                 // Display the route on the map.
+
                                 directionsDisplay.setDirections(response);
                             }
                         });
@@ -172,8 +175,9 @@
             }
 
             function onError(error) {
-                alert('code: ' + error.code + '\n' +
-                    'message: ' + error.message + '\n');
+                // alert('code: ' + error.code + '\n' +
+                //     'message: ' + error.message + '\n');
+                document.getElementById('place').innerHTML = "Something went wrong...try again";
             }
         }
     </script>
@@ -192,6 +196,9 @@
 
     </main>
     <footer>
+        <center>
+            <div id="place" style="color: #333;"></div>
+        </center>
 
     </footer>
 

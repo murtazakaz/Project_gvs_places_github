@@ -1,130 +1,290 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
-        <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
-        <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
-        <title>Go Virtual</title>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
-		   <script type="text/javascript" src="js/menu.js"></script>
-		<script>
-		 function getParameterByName(name, url) {
-		if (!url) url = window.location.href;
-		name = name.replace(/[\[\]]/g, "\\$&");
-		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-			results = regex.exec(url);
-		if (!results) return null;
-		if (!results[2]) return '';
-		return decodeURIComponent(results[2].replace(/\+/g, " "));
-			}
-			
-				 user_id = getParameterByName('user'); 
-				 p_id =getParameterByName('name');
-				 price = getParameterByName('price'); 
-				 person = getParameterByName('person');
-				 p_name = getParameterByName('p_name');
-				 time = getParameterByName('time');
-				 date = getParameterByName('date');
-				 quantity =getParameterByName('quantity');
-					room =getParameterByName('room');
-					pickup = getParameterByName('pickup');
-					destination= getParameterByName('destination');
-					size = getParameterByName('size');
-		</script>
-    </head>
-    <body style="background-image:url('img/2.png');background-size:cover;">
-         <div id="signup_page" data-theme="b" data-role="page" style="background-image:url('img/2.png');background-size:cover">
-         <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
 
-            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">Payment</h1>
-              <!-- <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a> -->
-			 <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+    <script src="js/jquery.min.js"></script>
+    <title>Go Virtual</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        $(function initialize() {
+
+
+
+            user_id = getParameterByName('user');
+            p_id = getParameterByName('name');
+            price = getParameterByName('price');
+            person = getParameterByName('person');
+            p_name = getParameterByName('p_name');
+            time = getParameterByName('time');
+            date = getParameterByName('date');
+            quantity = getParameterByName('quantity');
+            room = getParameterByName('room');
+            pickup = getParameterByName('pickup');
+            destination = getParameterByName('destination');
+            size = getParameterByName('size');
+
+            $("#quantity").hide();
+            $("#size").hide();
+            $("#room").hide();
+            $("#person").hide();
+            $("#time").hide();
+            $("#destination").hide();
+            $("#pickup").hide();
+            $("#date").hide();
+            var person_quantity = "";
+            if (quantity != null) {
+                $("#quantity").show();
+                document.getElementById('q').innerHTML = quantity;
+                price = price * quantity;
+                person_quantity = "quantity";
+            }
+            if (size != null) {
+                $("#size").show();
+                document.getElementById('s').innerHTML = size;
+            }
+            if (room != null) {
+                $("#room").show();
+                document.getElementById('r').innerHTML = room;
+                tot_price = price * room;
+                person_quantity = "room";
+            }
+            if (person != null) {
+                $("#person").show();
+                document.getElementById('p').innerHTML = person;
+                tot_price = price * person;
+                person_quantity = "person";
+            }
+            if (time != null) {
+                $("#time").show();
+                document.getElementById('t').innerHTML = time;
+            }
+            if (destination != null) {
+                $("#destination").show();
+                document.getElementById('dest').innerHTML = destination;
+            }
+            if (pickup != null) {
+                $("#pickup").show();
+                document.getElementById('pick').innerHTML = pickup;
+            }
+            if (date != null) {
+                $("#date").show();
+                document.getElementById('d').innerHTML = date;
+            }
+            document.getElementById('name').innerHTML = p_name;
+            document.getElementById('price').innerHTML = "$ " + price + " / " + person_quantity;
+            document.getElementById('total_price').innerHTML = "$ " + tot_price;
+            price = tot_price;
+            //  document.addEventListener("deviceready", fetchdata, false);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="signup_page" data-theme="b" data-role="page">
+        <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">Booking</h1>
+            <!-- <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a> -->
+            <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
             <input type="hidden" id="edt_mail" />
         </div>
-		  <div data-role="panel" id="myPanel" data-display="push" data-position="left" data-theme="b">
-             <center>
-			 <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
-			 <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;"/></a>
-			<div id="emailid" style="color: white;" ></div></center> 
-			
-			<br/><br/>
-			
-			<!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
-           <ul data-role="listview" data-inset="false" data-theme="b"> 
-				
-                  <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
-				  <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li> 
-				  <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li> 
-				  <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
-				  <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li> 
-				  <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li> 
-				  <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li> 
-				  <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li> 
-				  <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li> 
-				  <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li> 
-				  <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
-				  <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li> 
-				  <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li> 
-				  <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
-				  <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>	
-				  <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li> 				  
-				  <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>	
-				  <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li> 
-				  <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
-            </ul> 
+        <div data-role="panel" id="myPanel" data-display="push" data-position="left" data-theme="b">
+            <center>
+                <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
+                <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;" /></a>
+                <div id="emailid" style="color: white;"></div>
+            </center>
+
+            <br/><br/>
+
+            <!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
+            <ul data-role="listview" data-inset="false" data-theme="b">
+
+                <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+                <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li>
+                <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li>
+                <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+                <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
+                <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
+                <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
+                <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
+                <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
+                <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
+                <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+                <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li>
+                <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
+                <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+                <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
+                <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
+                <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
+                <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
+                <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul>
 
 
 
-         </div>
-          
-		  
-		  
-
-		<div data-role="content">
-		<section id="content" class="container">
-
-            
-
-               <center><h4 class="page-title"></h4></center>
-
-                
-
-                <div class="block-area">
-					<div class="col-md-12">	
-					<h2></h2>
-		<div class="app">
-            <h1></h1>
-            <div id="deviceready" class="blink">
-                <p style="color:white;" class="event listening"></p>
-                <p style="color:white;" class="event received"></p>
-              <center>  <button style="margin-top: 230px;" id="buyNowBtn"> Buy Now !</button> </center>                <!-- <button id="buyInFutureBtn"> Pay in Future !</button> -->
-                <!-- <button id="profileSharingBtn"> Profile Sharing !</button> -->
-				 <!-- <button id="cardScanBtn">Advanced: Use card.io scan only</button> -->
-            </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/paypal-mobile-js-helper.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-                </div>
+
+
+
+
+        <div data-role="content">
+            <section id="content" class="container">
+
+
+
+                <center>
+                    <h4 class="page-title"></h4>
+                </center>
+
+
+
+                <!-- <div class="block-area"> -->
+                <!-- <div class="col-md-12">
+                        <h2></h2>
+                        <div class="app">
+                            <h1></h1>
+                            <div id="deviceready" class="blink">
+                                <p style="color:white;" class="event listening"></p>
+                                <p style="color:white;" class="event received"></p>
+                                <center> <button style="margin-top: 230px;" id="buyNowBtn"> Buy Now !</button> </center> -->
+                <!-- <button id="buyInFutureBtn"> Pay in Future !</button> -->
+                <!-- <button id="profileSharingBtn"> Profile Sharing !</button> -->
+                <!-- <button id="cardScanBtn">Advanced: Use card.io scan only</button> -->
+                <!-- </div>
+                        </div>
+
+                    </div> -->
+                <!-- </div> -->
+                <div class="block-area" style="margin: 0%;background: #ffffff;border: 1px solid #ddd;
+                ">
+                    <div class="col-md-12">
+                        <h2 style="text-align:center;color:#333">Reciept</h2>
+
+
+                        <form id="frmLogin" style="color: #333;">
+
+                            <div class="row">
+
+                                <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Name</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="name" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+
+                                <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Price</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="price" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+
+                                <div id="quantity" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Quantity</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="q" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+                                <div id="person" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Person</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="p" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+                                <div id="room" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Room</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="r" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+                                <div id="pickup" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Pickup</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="pick" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+                                <div id="destination" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Destination</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="dest" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+                                <div id="size" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Size</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="s" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+                                <div id="time" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Time</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="t" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+                                <div id="date" class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Date</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="d" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+                                <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
+                                    <hr>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>Total</div>
+                                    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'></div>
+                                    <div id="total_price" class='col-md-6 col-sm-6 col-xs-6 col-lg-6'></div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                        </form>
+                    </div>
+
+                    <br><br>
                 </div>
 
-                
 
             </section>
-         </div>
-		 <script>
-        function booking() {
-		
-		window.location="paypalpayment.html";
-			/*
+        </div>
+        <script>
+            function booking() {
+
+                window.location = "paypalpayment.html";
+                /*
             var name = $("#name").val();
             var city = $("#city").val();
             var country = $("#country").val();
@@ -160,12 +320,29 @@
 					
                 });
 				*/
-           
-           
-        }
 
-    </script>
-		 
+
+            }
+        </script>
+
+        <div style="margin-top: 5%; background: white;position: fixed;" data-position="fixed" data-tap-toggle="false" data-role="footer">
+            <center>
+
+                <div id="deviceready">
+                    <p style="color:white;" class="event listening"></p>
+                    <p style="color:white;" class="event received"></p>
+                    <center> <button style="width:50%;margin-top: 0px;" id="buyNowBtn"> Buy Now !</button> </center>
+                    <!-- <button id="buyInFutureBtn"> Pay in Future !</button> -->
+                    <!-- <button id="profileSharingBtn"> Profile Sharing !</button> -->
+                    <!-- <button id="cardScanBtn">Advanced: Use card.io scan only</button> -->
+                </div>
+
+            </center>
         </div>
-    </body>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/paypal-mobile-js-helper.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </div>
+</body>
+
 </html>

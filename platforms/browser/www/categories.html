@@ -21,17 +21,7 @@
 
     <script type="text/javascript">
         document.addEventListener("backbutton", function(e) {
-            <!-- if($.mobile.activePage.is('#homepage')){ -->
-            /* 
-             Event preventDefault/stopPropagation not required as adding backbutton
-              listener itself override the default behaviour. Refer below PhoneGap link.
-            */
-            //e.preventDefault();
             navigator.app.exitApp();
-            <!-- } -->
-            <!-- else { -->
-            <!-- navigator.app.backHistory() -->
-            <!-- } -->
         }, false);
 
         function getParameterByName(name, url) {
@@ -194,7 +184,7 @@
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="barpage()">
+                        <a onclick="subcategorypage('Bar')">
 
                             <img src="img/photo-gallery/thumb1.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -203,14 +193,14 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="barpage()" style="font-size: 12px;">Bars</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Bar')" style="font-size: 12px;">Bars</a></h3>
                         </center>
 
                     </div>
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="carspage()">
+                        <a onclick="subcategorypage('Cars')">
 
                             <img src="img/photo-gallery/scar.jpg" style="width:100%  ;border-radius: 10px;" />
 
@@ -219,13 +209,13 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="carspage()" style="font-size: 12px;">Cars</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Cars')" style="font-size: 12px;">Cars</a></h3>
                         </center>
 
                     </div>
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="casinopage()">
+                        <a onclick="subcategorypage('Casino')">
 
                             <img src="img/photo-gallery/casinos.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -234,13 +224,13 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="casinopage()" style="font-size: 12px;"> Casinos</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Casino')" style="font-size: 12px;"> Casinos</a></h3>
                         </center>
 
                     </div>
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="clothingpage()">
+                        <a onclick="subcategorypage('Clothing')">
 
                             <img src="img/photo-gallery/sclothing.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -249,14 +239,14 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="clothingpage()" style="font-size: 12px;">Clothing</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Clothing')" style="font-size: 12px;">Clothing</a></h3>
                         </center>
 
                     </div>
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="drycleanpage()">
+                        <a onclick="subcategorypage('Dryclean')">
 
                             <img src="img/photo-gallery/3.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -265,13 +255,13 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="drycleanpage()" style="font-size: 12px;"> Dry Clean</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Dryclean')" style="font-size: 12px;"> Dry Clean</a></h3>
                         </center>
 
                     </div>
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="hairsalonpage()">
+                        <a onclick="subcategorypage('HairSalon')">
 
                             <img src="img/photo-gallery/hairsalon.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -280,13 +270,13 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="hairsalonpage()" style="font-size: 12px;"> Hair Salon</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('HairSalon')" style="font-size: 12px;"> Hair Salon</a></h3>
                         </center>
 
                     </div>
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="hospitalpage()">
+                        <a onclick="subcategorypage('Hospital')">
 
                             <img src="img/photo-gallery/shospital.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -295,7 +285,7 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="hospitalpage()" style="font-size: 12px;">Hospitals</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Hospital')" style="font-size: 12px;">Hospitals</a></h3>
                         </center>
 
                     </div>
@@ -317,7 +307,7 @@
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="massagepage()">
+                        <a onclick="subcategorypage('Massage')">
 
                             <img src="img/photo-gallery/massage.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -326,14 +316,14 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="massagepage()" style="font-size: 12px;">Spa</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Massage')" style="font-size: 12px;">Spa</a></h3>
                         </center>
 
                     </div>
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="moviepage()">
+                        <a onclick="subcategorypage('Movie')">
 
                             <img src="img/photo-gallery/Movie-hd-app-android.png" style="width:100% ;border-radius: 10px;" />
 
@@ -342,7 +332,7 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="moviepage()" style="font-size: 12px;">Movies</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Movie')" style="font-size: 12px;">Movies</a></h3>
                         </center>
 
                     </div>
@@ -350,7 +340,7 @@
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="nightclubspage()">
+                        <a onclick="subcategorypage('Nightclub')">
 
                             <img src="img/photo-gallery/superbox-thumb-4.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -359,14 +349,14 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="nightclubspage()" style="font-size: 12px;">Night Clubs</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Nightclub')" style="font-size: 12px;">Night Clubs</a></h3>
                         </center>
 
                     </div>
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="pharmacypage()">
+                        <a onclick="subcategorypage('Pharmacy')">
 
                             <img src="img/photo-gallery/medical.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -375,14 +365,14 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="pharmacypage()" style="font-size: 12px;">Pharmacies</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Pharmacy')" style="font-size: 12px;">Pharmacies</a></h3>
                         </center>
 
                     </div>
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="restaurantpage()">
+                        <a onclick="subcategorypage('Restaurant')">
 
                             <img src="img/photo-gallery/superbox-thumb-2.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -391,14 +381,14 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="restaurantpage()" style="font-size: 12px;">Restaurants</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Restaurant')" style="font-size: 12px;">Restaurants</a></h3>
                         </center>
 
                     </div>
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="supermarketpage()">
+                        <a onclick="subcategorypage('Supermarket')">
 
                             <img src="img/photo-gallery/superbox-thumb-1.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -407,7 +397,7 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="supermarketpage()" style="font-size: 11px;">Supermarkets</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Supermarket')" style="font-size: 11px;">Supermarkets</a></h3>
                         </center>
 
                     </div>
@@ -417,7 +407,7 @@
 
                     <div class="gallery-item col-md-3 col-sm-3 col-xs-4">
 
-                        <a onclick="tailorpage()">
+                        <a onclick="subcategorypage('Tailor')">
 
                             <img src="img/photo-gallery/Tailor-1000x667.jpg" style="width:100% ;border-radius: 10px;" />
 
@@ -426,7 +416,7 @@
                         </a>
 
                         <center>
-                            <h3 style="margin-top:0px;"><a onclick="tailorpage()" style="font-size: 12px;"> Tailoring</a></h3>
+                            <h3 style="margin-top:0px;"><a onclick="subcategorypage('Tailor')" style="font-size: 12px;"> Tailoring</a></h3>
                         </center>
 
                     </div>
