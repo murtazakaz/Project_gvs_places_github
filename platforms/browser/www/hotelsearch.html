@@ -22,7 +22,7 @@
 			#cat{
 				
 				    background: #033739;
-					color: white;
+					color: #333;
 					margin-left: 28px;
 					margin-top: 20px;
 					text-align: center;
@@ -177,8 +177,7 @@ function search_hotels()
    <script type="text/javascript" src="js/menu.js"></script>
     </head>
     
-     <body onload="op();" style="background-image:url('img/2.png');background-size:cover; background-repeat: no-repeat;
-    background-attachment: fixed;">
+     <body onload="op();" style="background: whitesmoke;">
          <div id="signup_page" data-role="page" style="text-shadow: none;" >
 		<div id="wrapper" data-role="content"  style="text-shadow: none;" >
 				<div class="col-md-4">
@@ -196,33 +195,33 @@ function search_hotels()
               <center>
 			 <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
 			 <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;"/></a>
-			<div id="emailid" style="color: white;" ></div></center> 
+			<div id="emailid" style="color: #333;" ></div></center> 
 			
 			<br/><br/>
 			
 			<!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
-           <ul data-role="listview" data-inset="false" data-theme="b"> 
-				
-                  <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
-				  <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li> 
-				  <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li> 
-				  <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
-				  <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li> 
-				  <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li> 
-				  <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li> 
-				  <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li> 
-				  <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li> 
-				  <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li> 
-				  <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
-				  <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li> 
-				  <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li> 
-				  <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
-				  <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>	
-				  <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li> 				  
-				  <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>	
-				  <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li> 
-				  <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
-            </ul> 
+         <ul data-role="listview" data-inset="false" data-theme="b">
+
+                <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+                <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Bar')" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Cars')" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Casino')" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Clothing')" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Dryclean')" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('HairSalon')" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Hospital')" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
+                <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Massage')" style="font-family:'Microsoft NeoGothic';">Spa</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Movie')" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Nightclub')" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Pharmacy')" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Restaurant')" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Supermarket')" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Tailor')" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
+                <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul>
+
 
 
          </div>
@@ -235,10 +234,11 @@ function search_hotels()
             
 
                <center><h4 class="page-title"></h4></center>
-	<div class="block-area">
-                   <div>
-				   	<center><h2 style="color: white;"><img src='img/hotel.png'/>Search Hotels</h2></center>
-                        <div style="background-color:rgba(255, 160, 18, 0.5); border-radius: 10px; text-shadow: none;" class="col-md-12 col-sm-12 col-xs-12">
+	<div class="block-area" style="margin: 5%;padding: 5%;background: #ffffff;border: 1px solid #ddd;
+                ">
+                  
+				   	<center><h2 style="color: #333;"><img src='img/hotel.png'/>Search Hotels</h2></center>
+                      
 					
 						<br>
 						
@@ -252,19 +252,19 @@ function search_hotels()
 					<datalist id="destinationCode"></datalist>
 					</div>
 					
-					<div style="width: 100%; color: white; "> 
+					<div style="width: 100%; color: #333; "> 
 					<label >Check-in Date</label>
 					<input style="color: black;" type="date"  id="checkinDate" placeholder="check-in Date" />
 					
 					</div>
-					<div style="width: 100%; color: white; "> 
+					<div style="width: 100%; color: #333; "> 
 					<label >Check-out Date</label>
 					<input style="color: black;" type="date"  id="checkoutDate" placeholder="Check-out Date" />
 					
 					</div>
 					<center><div class="col-md-12 col-sm-12 col-xs-12" style="display: flex;">
 					<div class="col-md-6 col-sm-6 col-xs-6" style="float: left;"> 
-							<label  style="color: white;">Adult</label>
+							<label  style="color: #333;">Adult</label>
 							 <select class="ghg" style="color: black; " type="text" id="adult" placeholder="Adult">
 							
 						   <option>1</option>
@@ -282,7 +282,7 @@ function search_hotels()
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6" style="float: right;"> 
 							
-							<label style="color: white; ">Children</label>
+							<label style="color: #333; ">Children</label>
 					 <select style="color: black; " type="text" id="children" >
 					 <!-- &nbsp;&nbsp;&nbsp; -->
 					    <option>0</option>
@@ -322,19 +322,20 @@ function search_hotels()
 									<!-- </select> -->
 					<!-- </div> -->
 					<br><br>
-				<a onclick="search_hotels()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: white;" >Find Hotels</button></a> <br><br>
-                        </div> 
+				<!-- <a onclick="search_hotels()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: #333;" >Find Hotels</button></a> <br><br> -->
+                       
 						
-						
-                    </div>
-					
-					
-					
                 </div>
 
             </section>
          </div>
-		 
+		   <div style="margin-top: 5%; background: white;position: fixed;" data-position="fixed" data-tap-toggle="false" data-role="footer">
+            <center>
+
+              <a onclick="search_hotels()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none;width:50%;  background-color:#333; color: white;" >Find Hotels</button></a>
+
+            </center>
+        </div>
 		 
         </div>
     </body>

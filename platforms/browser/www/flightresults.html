@@ -11,12 +11,21 @@
     <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/form.css" rel="stylesheet">
+
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+
+    <link href="css/generics.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
     <title>Go Virtual</title>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="phonegap.js"></script>
-
+    <script language="JavaScript">
+    </script>
     <style>
         #cat {
             background: #033739;
@@ -1095,52 +1104,53 @@
     <script type="text/javascript" src="js/menu.js"></script>
 </head>
 
-<body onload="callflightresult();" style="background-color: whitesmoke;">
+<body onload="callflightresult();" style="background: whitesmoke;">
     <div id="signup_page" data-role="page" style="text-shadow: none;">
+        <!-- <div id="wrapper" data-role="content"  style="text-shadow: none;" > -->
+        <!-- <div class="col-md-4"> -->
 
+        <!-- </div> -->
+        <!-- </div>		 -->
         <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
 
-            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">DETAILS</h1>
-            <a id="_home" href="#myPanel" onclick="sidemenu();" class="ui-btn-right" data-icon="bars" data-iconpos="notext">Menu</a>
-            <a id="_home" onclick="back()" class="ui-btn-left" data-icon="arrow-l" data-iconpos="notext">Menu</a>
+            <h1 style="font-family:'Microsoft NeoGothic';text-shadow: none;">Details</h1>
+            <a id="_home" href="#myPanel" class="ui-btn-left" data-icon="bars" data-iconpos="notext">Menu</a>
             <input type="hidden" id="edt_mail" />
         </div>
-        <div data-role="panel" id="myPanel" data-display="push" data-position="right" data-theme="b">
+        <div data-role="panel" id="myPanel" data-display="push" data-position="left" data-theme="b">
             <center>
                 <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
-                <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;" /></a>
-                <div id="emailid" style="color: white;"></div>
+                <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50% !important;height: 100px;width: 50%;" /></a>
+                <div id="emailid" style="color: #333;"></div>
             </center>
 
             <br/><br/>
 
             <!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
-            <ul data-role="listview" data-inset="false" data-theme="b">
+             <ul data-role="listview" data-inset="false" data-theme="b">
 
                 <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
-                <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li>
                 <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li>
-                <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
-                <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
-                <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
-                <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
-                <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
-                <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
-                <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Bar')" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Cars')" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Casino')" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Clothing')" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Dryclean')" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('HairSalon')" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Hospital')" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
                 <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
-                <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li>
-                <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
-                <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
-                <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
-                <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
-                <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
-                <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Massage')" style="font-family:'Microsoft NeoGothic';">Spa</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Movie')" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Nightclub')" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Pharmacy')" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Restaurant')" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Supermarket')" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Tailor')" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
                 <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
             </ul>
 
 
         </div>
-
 
 
 
@@ -1154,74 +1164,79 @@
                 </center>
                 <div class="block-area">
                     <div>
-                        <div style=" class=" col-md-12 col-sm-12 col-xs-12 ">
-						<center><h2 style="color: #333; "><img src='img/flighticon.png'/>Flight Results</h2>
-						<p id="date_dep " style="color: #333; "></p></center>
-						<div id="nonstop " style="color: #333; ">
-					</div>
-						
-						<div id="loader " class="ball "></div>
-						<br>
-					<center><p style="color:#333; " id="loadertxt ">Checking Flight details...</p></center>
-					
-                           <!-- <div> <input style="color: black; " placeholder="Flying From " type="text " id="origin "  list="originCode " onkeyup="getorigincitycode(); "/> -->
-						<!-- <datalist id="originCode "> -->
-						<!-- </datalist> -->
-					<!-- </div> -->
-					<!-- <center><img src='img/directionArrows.png'/></center> -->
-					<!-- <div> <input style="color: black; " type="text " id="destination " placeholder="Flying To " list="destinationCode " onkeyup="getdestinationcitycode(); "/> -->
-					<!-- <datalist id="destinationCode "></datalist> -->
-					<!-- </div> -->
-					
-					<!-- <div style="width: 100%; color: #333; ">  -->
-					<!-- <label >Departure Date</label> -->
-					<!-- <input style="color: black; " type="date " id="departureDate " placeholder="Departure Date " /> -->
-					
-					<!-- </div> -->
-					<div id="wrapper " >
-					
-					</div>
-					
-					<!-- <div id="connecting " style="color: #333; "> -->
-					<!-- </div> -->
-					
-					<div id="wrapper1 " >
-				
-				
-			
-			
-										</div>
-					
-					
-					
-				
-					
-		
-					
-					
-					<br><br><br><br>
-					<!-- <div>   -->
-					<!-- <select style="color: black; " type="text " id="ticketclass " > -->
-     
-						   <!-- <option>Coach/Economy</option> -->
-						   <!-- <option>Business</option>  -->
-							
-									<!-- </select> -->
-					<!-- </div> -->
-				<!-- <a onclick="getflightdetails() "><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: #333; " >Find Flights</button></a> <br><br> -->
-                        </div> 
-						
-						
+                        <div class=" col-md-12 col-sm-12 col-xs-12 ">
+                            <center>
+                                <h2 style="color: #333; "><img src='img/flighticon.png' />Flight Results</h2>
+                                <p id="date_dep" style="color: #333; "></p>
+                            </center>
+                            <div id="nonstop" style="color: #333; ">
+                            </div>
+
+                            <div id="loader" class="ball "></div>
+                            <br>
+                            <center>
+                                <p style="color:#333; " id="loadertxt">Checking Flight details...</p>
+                            </center>
+
+                            <!-- <div> <input style="color: black; " placeholder="Flying From " type="text " id="origin "  list="originCode " onkeyup="getorigincitycode(); "/> -->
+                            <!-- <datalist id="originCode "> -->
+                            <!-- </datalist> -->
+                            <!-- </div> -->
+                            <!-- <center><img src='img/directionArrows.png'/></center> -->
+                            <!-- <div> <input style="color: black; " type="text " id="destination " placeholder="Flying To " list="destinationCode " onkeyup="getdestinationcitycode(); "/> -->
+                            <!-- <datalist id="destinationCode "></datalist> -->
+                            <!-- </div> -->
+
+                            <!-- <div style="width: 100%; color: #333; ">  -->
+                            <!-- <label >Departure Date</label> -->
+                            <!-- <input style="color: black; " type="date " id="departureDate " placeholder="Departure Date " /> -->
+
+                            <!-- </div> -->
+                            <div id="wrapper">
+
+                            </div>
+
+                            <!-- <div id="connecting " style="color: #333; "> -->
+                            <!-- </div> -->
+
+                            <div id="wrapper1">
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+
+                            <br><br><br><br>
+                            <!-- <div>   -->
+                            <!-- <select style="color: black; " type="text " id="ticketclass " > -->
+
+                            <!-- <option>Coach/Economy</option> -->
+                            <!-- <option>Business</option>  -->
+
+                            <!-- </select> -->
+                            <!-- </div> -->
+                            <!-- <a onclick="getflightdetails() "><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: #333; " >Find Flights</button></a> <br><br> -->
+                        </div>
+
+
                     </div>
-					
-					
-					
+
+
+
                 </div>
 
             </section>
-         </div>
-		 
-		 
         </div>
-    </body>
+
+
+    </div>
+</body>
+
 </html>

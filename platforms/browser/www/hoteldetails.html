@@ -30,7 +30,7 @@
 			#cat{
 				
 				    background: #033739;
-					color: white;
+					color: #333;
 					margin-left: 28px;
 					margin-top: 20px;
 					text-align: center;
@@ -233,9 +233,10 @@ request.onreadystatechange = function () {
 		
 		hoteldetails = "email=" +email+ "&hotel_id="+ hotel_id +"&hotel_name="+hotelname+"&price="+exchange_price+" USD";
 		
-	   tt ="<div style='margin-bottom: 5px;background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; padding: 5px;'><br><center><p  style='color: white; font-size: large;font-weight: 600;'><img src='img/hotelnameicon.png'/>&nbsp "+hotelname+"</p><img src='"+thumbnail+"' id='img' style='width:95%'><p  style='color: white; font-size: medium;'>Description:</p><p  style='color: white; font-size: small;'>"+description+"</p><p  style='color: white; font-size: medium;'>Location:</p><p  style='color: white; font-size: small;'>"+address+", "+city+", "+country+"</p><p  style='color: white;font-size: medium;'>USD $&nbsp "+exchange_price+"</p><p  style='color: white; font-size: small;'>Rating:&nbsp "+stars+"/5</p></center><br></div><br><a onclick='bookhotel(\""+hoteldetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 100%;  border-color: black; text-shadow: none; color: white;' >Book Hotel</button></a> ";
+	   tt ="<div style='margin-bottom: 5px;background-color:white; border-radius: 10px !important; text-shadow: none;color: #333; padding: 5px;'><br><center><p  style='color: #333; font-size: large;font-weight: 600;'><img src='img/hotelnameicon.png'/>&nbsp "+hotelname+"</p><img src='"+thumbnail+"' id='img' style='width:95%'><p  style='color: #333; font-size: medium;'>Description:</p><p  style='color: #333; font-size: small;'>"+description+"</p><p  style='color: #333; font-size: medium;'>Location:</p><p  style='color: #333; font-size: small;'>"+address+", "+city+", "+country+"</p><p  style='color: #333;font-size: medium;'>USD $&nbsp "+exchange_price+"</p><p  style='color: #333; font-size: small;'>Rating:&nbsp "+stars+"/5</p></center><br></div><br> ";
+	   btn = "<a onclick='bookhotel(\""+hoteldetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 50%;  border-color: black; text-shadow: none; color: white;' >Book Hotel</button></a>";
        $("#wrapper").append(tt);
-	
+	 $("#book_btn").append(btn);
 
 		
 
@@ -280,8 +281,7 @@ var fbpic = getParameterByName('fbpic');
    <script type="text/javascript" src="js/menu.js"></script>
     </head>
     
-     <body  onload="callhotelresult();" style="background-image:url('img/2.png');background-size:cover; background-repeat: no-repeat;
-    background-attachment: fixed;">
+     <body  onload="callhotelresult();" style="background-color:whitesmoke;">
          <div id="signup_page" data-role="page" style="text-shadow: none;" >
 		<!-- <div id="wrapper" data-role="content"  style="text-shadow: none;" > -->
 				<!-- <div class="col-md-4"> -->
@@ -299,33 +299,32 @@ var fbpic = getParameterByName('fbpic');
               <center>
 			 <!-- <a><img id="userPic" style=" border-radius: 50%;" /></a>  -->
 			 <a href="profile.html"><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%;"/></a>
-			<div id="emailid" style="color: white;" ></div></center> 
+			<div id="emailid" style="color: #333;" ></div></center> 
 			
 			<br/><br/>
 			
 			<!-- <div  id="sidemenu" style="font-family:'Microsoft NeoGothic';"> -->
-           <ul data-role="listview" data-inset="false" data-theme="b"> 
-				
-                  <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
-				  <li><a id="go_logout" onclick="category()" style="font-family:'Microsoft NeoGothic';">Categories</a></li> 
-				  <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li> 
-				  <li><a id="go_logout" onclick="barpage()" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
-				  <li><a id="go_logout" onclick="carspage()" style="font-family:'Microsoft NeoGothic';">Cars</a></li> 
-				  <li><a id="go_logout" onclick="casinopage()" style="font-family:'Microsoft NeoGothic';">Casinos</a></li> 
-				  <li><a id="go_logout" onclick="clothingpage()" style="font-family:'Microsoft NeoGothic';">Clothing</a></li> 
-				  <li><a id="go_logout" onclick="drycleanpage()" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li> 
-				  <li><a id="go_logout" onclick="hairsalonpage()" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li> 
-				  <li><a id="go_logout" onclick="hospitalpage()" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li> 
-				  <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
-				  <li><a id="go_logout" onclick="massagepage()" style="font-family:'Microsoft NeoGothic';">Massage</a></li> 
-				  <li><a id="go_logout" onclick="moviepage()" style="font-family:'Microsoft NeoGothic';">Movies</a></li> 
-				  <li><a id="go_logout" onclick="nightclubspage()" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
-				  <li><a id="go_logout" onclick="pharmacypage()" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>	
-				  <li><a id="go_logout" onclick="restaurantpage()" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li> 				  
-				  <li><a id="go_logout" onclick="supermarketpage()" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>	
-				  <li><a id="go_logout" onclick="tailorpage()" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li> 
-				  <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
-            </ul> 
+           <ul data-role="listview" data-inset="false" data-theme="b">
+
+                <li><a id="go_logout" onclick="paidproduct()" style="font-family:'Microsoft NeoGothic';">Payments</a></li>
+                <li><a id="go_logout" onclick="airlinepage()" style="font-family:'Microsoft NeoGothic';">Airlines</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Bar')" style="font-family:'Microsoft NeoGothic';">Bars</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Cars')" style="font-family:'Microsoft NeoGothic';">Cars</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Casino')" style="font-family:'Microsoft NeoGothic';">Casinos</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Clothing')" style="font-family:'Microsoft NeoGothic';">Clothing</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Dryclean')" style="font-family:'Microsoft NeoGothic';">Dry Cleaning</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('HairSalon')" style="font-family:'Microsoft NeoGothic';">Hair Salon</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Hospital')" style="font-family:'Microsoft NeoGothic';">Hospitals</a></li>
+                <li><a id="go_logout" onclick="hotelpage()" style="font-family:'Microsoft NeoGothic';">Hotels</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Massage')" style="font-family:'Microsoft NeoGothic';">Spa</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Movie')" style="font-family:'Microsoft NeoGothic';">Movies</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Nightclub')" style="font-family:'Microsoft NeoGothic';">Night Clubs</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Pharmacy')" style="font-family:'Microsoft NeoGothic';">Pharmacies</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Restaurant')" style="font-family:'Microsoft NeoGothic';">Restaurants</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Supermarket')" style="font-family:'Microsoft NeoGothic';">Supermarkets</a></li>
+                <li><a id="go_logout" onclick="subcategorypage('Tailor')" style="font-family:'Microsoft NeoGothic';">Tailoring</a></li>
+                <li><a id="go_logout" onclick="logout()" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul>
 
 
          </div>
@@ -341,14 +340,14 @@ var fbpic = getParameterByName('fbpic');
 	<div class="block-area">
                    <div>
                         <div style=" class="col-md-12 col-sm-12 col-xs-12">
-						<center><h2 style="color: white;"><img src='img/hotel.png'/>&nbsp Hotel Details</h2>
-						<p id="date_dep" style="color: white;"></p></center>
-						<div id="nonstop" style="color: white;">
+						<center><h2 style="color: #333;"><img src='img/hotel.png'/>&nbsp Hotel Details</h2>
+						<p id="date_dep" style="color: #333;"></p></center>
+						<div id="nonstop" style="color: #333;">
 					</div>
 						
 						<div id="loader" class="ball"></div>
 						<br>
-					<center><p style="color:white;" id="loadertxt">Fetching hotel details...</p></center>
+					<center><p style="color:#333;" id="loadertxt">Fetching hotel details...</p></center>
 				
                            <!-- <div> <input style="color: black;" placeholder="Flying From" type="text" id="origin"  list="originCode" onkeyup="getorigincitycode();"/> -->
 						<!-- <datalist id="originCode"> -->
@@ -359,7 +358,7 @@ var fbpic = getParameterByName('fbpic');
 					<!-- <datalist id="destinationCode"></datalist> -->
 					<!-- </div> -->
 					
-					<!-- <div style="width: 100%; color: white; ">  -->
+					<!-- <div style="width: 100%; color: #333; ">  -->
 					<!-- <label >Departure Date</label> -->
 					<!-- <input style="color: black;" type="date" id="departureDate" placeholder="Departure Date" /> -->
 					
@@ -368,7 +367,7 @@ var fbpic = getParameterByName('fbpic');
 					
 					</div>
 					
-					<!-- <div id="connecting" style="color: white;"> -->
+					<!-- <div id="connecting" style="color: #333;"> -->
 					<!-- </div> -->
 				
 					<br><br><br><br>
@@ -380,7 +379,7 @@ var fbpic = getParameterByName('fbpic');
 							
 									<!-- </select> -->
 					<!-- </div> -->
-				<!-- <a onclick="getflightdetails()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: white;" >Find Flights</button></a> <br><br> -->
+				<!-- <a onclick="getflightdetails()"><button id='btn' type='button' class='btn btn-primary' style="text-shadow: none; background-color:rgba(0, 0, 0, .5); color: #333;" >Find Flights</button></a> <br><br> -->
                         </div> 
 						
 						
@@ -393,7 +392,13 @@ var fbpic = getParameterByName('fbpic');
             </section>
          </div>
 		 
-		 
+		  <div style="margin-top: 5%; background: white;position: fixed;" data-position="fixed" data-tap-toggle="false" data-role="footer">
+            <center>
+
+             <div id="book_btn"></div>
+
+            </center>
+        </div>
         </div>
     </body>
 </html>
